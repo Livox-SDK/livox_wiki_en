@@ -6,6 +6,23 @@ Product
 ------------------------------
 
 
+New MId-70
+~~~~~~~~~~~~~~~~~~~~~~
+The Mid-70 is another component adding to the overall market appeal for Livox with tailored use applications such as low-speed autonomous driving and mobile robotics. By significantly expanding the vertical viewing angle, reducing blind spots and increasing close-range precision, the Mid-70 offers a thorough and comprehensive point cloud data quality to ensure safer autonomy.
+`Mid-70 <https://www.livoxtech.com/mid-70>`_
+
+.. image:: ../image/mid70.png
+    :align: center
+
+New Avia
+~~~~~~~~~~~~~~~~~~~~~~
+The Livox Avia combines compact and lightweight design with improved detection range and efficiency, featuring an FOV greater than 70°. Its triple-echo and dual-scanning modes are ideal for use cases such as mapping and low-speed autonomous driving.
+`Avia <https://www.livoxtech.com/avia>`_
+
+.. image:: ../image/avia.png
+    :align: center
+
+
 Mid Series
 ~~~~~~~~~~~~~~~~~~~~~~
 The Livox Mid-40 LiDAR sensor is incredibly cost effective. It detects objects as far as 260 meters away and uses an advanced non-repetitive scanning pattern to deliver highly accurate details in the FOV. A compact body enables users to easily embed units into existing designs for greater flexibility and performance. The Mid-40 has been mass-produced and is ready to ship immediately to facilitate uses in autonomous driving, robotics, mapping, security, and other areas from small batch testing to large-scale applications.For more infomation：
