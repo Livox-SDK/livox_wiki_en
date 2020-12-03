@@ -99,12 +99,20 @@ Livox point cloud characteristics
 Download link:
 `cloud characteristics <https://www.livoxtech.com/3296f540ecf5458a8829e01cf429798e/downloads/Point%20cloud%20characteristics.pdf>`_
 
+Livox Avia
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. -  Livox Avia doc link: `Livox Avia doc <https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/update/Livox%20Horizon%20User%20Manual%20(EN).pdf>`_
+
+
 Livox Horizon
 ~~~~~~~~~~~~~~~~~~~~~~
 
 -  Horizon user manual download link: `Livox Horizon User Manuel <https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/update/Livox%20Horizon%20User%20Manual%20(EN).pdf>`_
 
 -  Horizon Quick Start Guide download link: `Livox Horizon Quick Start Guide <https://www.livoxtech.com/3296f540ecf5458a8829e01cf429798e/assets/horizon/Livox%20Horizon%20Quick%20Start%20Guide.pdf>`_
+
+.. -  Livox Horizon doc link: `Livox Horizon doc <https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/update/Livox%20Horizon%20User%20Manual%20(EN).pdf>`_
 
 Livox Mid
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -119,6 +127,8 @@ Livox Mid
 
 -  Mid-100 3D Model and FOV Shape download link: `MID-100 3D Model and FOV Shape <https://www.livoxtech.com/3296f540ecf5458a8829e01cf429798e/downloads/MID-100%203D%20Model%20and%20FOV%20Shape.zip>`_
 
+.. -  Livox Mid doc link: `Livox Mid doc <https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/update/Livox%20Horizon%20User%20Manual%20(EN).pdf>`_
+
 Livox Tele-15
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -129,6 +139,8 @@ Livox Tele-15
 -  Tele-15 3D Model and FOV Shape download link: `Tele-15 3D Model and FOV Shape <https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/Tele-15_shell_FOV_3D.stp>`_
 
 -  Tele-15 W/O Dissipation Module 3D Model download link: `Tele-15 W/O Dissipation Module 3D Model <https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/Tele-15_withou_self_dissipation_module.stp>`_
+
+.. -  Livox Tele-15 doc link: `Livox Tele-15 doc <https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/update/Livox%20Horizon%20User%20Manual%20(EN).pdf>`_
 
 Livox Hub
 ~~~~~~~~~~~~~~~~~~~~~~
