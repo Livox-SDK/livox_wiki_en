@@ -11,7 +11,7 @@ Take a Livox Mid-40 and a Livox Horizon as an example:
 
 **Hardware part:**：Livox Mid-40 × 1, Livox Horizon × 1, Livox Hub × 1, Gigabit Ethernet cable × 1, Livox Hub power cord × 1, Livox lidar battery × 1, PC × 1.
 
-**synchronization:**：For time stamp synchronization between multiple livox LiDARs, please refer to:  `Timestamp Synchronization <https://github.com/Livox-SDK/Livox-SDK/wiki/Timestamp-Synchronization>`_
+**synchronization:**：For time stamp synchronization between multiple livox LiDARs, please refer to:  `Timestamp Synchronization <https://github.com/Livox-SDK/Livox-SDK/wiki/livox-device-time-synchronization-manual>`_
 
 **Wiring and IP configuration:**：Livox Hub uses UDP communication protocol for data communication through Ethernet, and supports two types of IP address configuration: static IP address and dynamic IP address. The factory default is to use Dynamic Host Configuration Protocol (DHCP) to assign IP addresses. According to different IP address settings, the physical connection is slightly different.
 
