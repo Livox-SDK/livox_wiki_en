@@ -19,7 +19,7 @@ Livox Simu-dataset contains point cloud data and corresponding annotations gener
 
 **Data format and download link:**
 
-`Readme <https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/Avia/readme_CN.md>`_
+`Readme <https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/Avia/readme_EN.md>`_
 
 `Dataset <https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/dataset/simu_data.zip>`_
 
