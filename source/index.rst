@@ -34,6 +34,8 @@ Welcome to LIVOX !
 
     data_summary/Livox_data_summary.rst
     data_summary/third_part_summary.rst
+    data_summary/dataset.rst
+
 
 .. toctree::
     :maxdepth: 0
