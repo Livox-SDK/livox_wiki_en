@@ -162,10 +162,19 @@ Livox Horizon point cloud data
 -  Data package 2 download link： `Livox Horizon Point Cloud Data 2 <https://www.livoxtech.com/3296f540ecf5458a8829e01cf429798e/downloads/20200107/Sample%20Point%20Cloud%20of%20Horizon.zip>`_ 
 
 Livox Mid-100 Point Cloud Data
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  Data package 1 download link: `Livox Mid-100 Point Cloud Data 1 <https://www.livoxtech.com/3296f540ecf5458a8829e01cf429798e/downloads/Livox%20Mid-100%20Point%20Cloud%20Data%201.zip>`_
 
 -  Data package 2 download link: `Livox Mid-100 Point Cloud Data 2 <https://www.livoxtech.com/3296f540ecf5458a8829e01cf429798e/downloads/Livox%20Mid-100%20Point%20Cloud%20Data%202.zip>`_
 
+
+Livox Vehicle Platform
+----------------------------
+
+-  Vehicle Platform for Livox lidar 
+
+.. image:: ../image/vehicle_platform.png
+
+download link: `Vehicle Platform DOC <https://github.com/Livox-SDK/livox_wiki_en/tree/master/source/data>`_
 
