@@ -1,6 +1,6 @@
-========================================
+==============================================
 Summary of Official Open Source Materials
-========================================
+==============================================
 
 Drive
 --------------
@@ -33,7 +33,7 @@ Livox Viewer is a software designed specifically for Livox lidar and Livox Hub, 
 `Livox Viewer 0.7.0(64bit) - Ubuntu 16.04 <https://www.livoxtech.com/3296f540ecf5458a8829e01cf429798e/downloads/Livox%20Viewer/Livox_Viewr_For_Linux_Ubuntu16.04_x64_0.7.0.tar.gz>`_
 
 Open Source Algorithm
---------------
+----------------------------
 
 Livox Horizon LOAM
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -42,7 +42,7 @@ Livox Horizon Loam is a robust, low-equivalent, real-time odometer and drawing s
 `Livox Horizon Loam <https://github.com/Livox-SDK/livox_horizon_loam>`_
 
 Livox Horizon Calibration
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Livox-Horizon-based calibration steps for Horizon-Horizon/Horizon-Tele. For details see:
 `LOAM Horizon Calibration <https://github.com/Livox-SDK/livox_calibration>`_
@@ -54,19 +54,19 @@ livox scanner is a 3D scanning solution, which mainly includes a Mid-40 lidar, M
 `livox scanner <https://github.com/Livox-SDK/livox_scanner>`_
 
 livox high precision mapping
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This solution uses Mid-40 lidar sensor with a detection distance of 260m, accuracy of 2cm, and non-repetitive scanning mode, combined with the high-precision position and attitude data provided by the APX-15 inertial navigation module, to achieve real-time high-precision mapping function. For details, see:
 `livox high precision mapping <https://github.com/Livox-SDK/livox_high_precision_mapping>`_
 
 livox camera lidar calibration
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This solution provides a method to manually calibrate the external parameters between Livox lidar and camera, which has been verified on Mid-40, Horizon and Tele-15. It contains code for calculating internal camera parameters, obtaining calibration data, optimizing external parameters and lidar camera fusion applications. In this scheme, the corners of the calibration board are used as the calibration targets. Due to the non-repetitive scanning feature of Livox lidar, the density of the point cloud is relatively high, and it is easier to find the accurate position of the corners in the lidar point cloud. The calibration and fusion of camera lidar can also get good results. For details see: 
 `livox camera lidar calibration <https://github.com/Livox-SDK/livox_camera_lidar_calibration>`_
 
 Horizon Highway SLAM
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Horizon is a high-performance lidar independently developed by Livox for L3 and L4 autonomous driving. Horizon Highway SLAM is a stable, low-drift and real-time SLAM software package developed based on Horizon for high-speed sports scenes. The algorithm is suitable for speed scenes of 0~80km/h, and solves the technical problems of feature extraction in extremely narrow FOV, motion distortion compensation and multi-sensor fusion to avoid scene degradation. For details see:
 `Horizon Highway SLAM <https://github.com/Livox-SDK/horizon_highway_slam>`_
@@ -79,10 +79,10 @@ Livox-Relocalization is a relocation software package for Livox Lidar developed 
 
 
 Documentation and Manuals
---------------
+--------------------------------
 
 Livox Viewer User Manual
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Download link:
 `Livox Viewer <https://www.livoxtech.com/3296f540ecf5458a8829e01cf429798e/downloads/Livox%20Viewer/Livox%20Viewer%20User%20Manual.pdf>`_
@@ -152,7 +152,7 @@ Livox Hub
 -  Livox Hub 3D model download link： `Livox Hub 3D model <https://www.livoxtech.com/3296f540ecf5458a8829e01cf429798e/downloads/20190318/Livox%20Hub%203D%20Model.zip>`_
 
 Point Cloud Data
-----------------
+--------------------------
 
 Livox Horizon point cloud data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -20,12 +20,7 @@ Welcome to LIVOX !
     :caption: tutorials
     :numbered:
 
-    tutorials/single_lidar_capture.rst
-    tutorials/multiple_lidars_capture.rst
-    tutorials/format_conversion.rst
-    tutorials/sensor_calibration.rst
-    tutorials/timestamp_synchronization.rst
-    tutorials/livox_SDK.rst
+    tutorials/index.rst
 
 .. toctree::
     :maxdepth: 0
