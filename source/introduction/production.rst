@@ -3,9 +3,27 @@
 Livox Technology Company Limited is an independent company founded in 2016 through DJI’s Open Innovation Program. Livox is committed to breaking through the current technological barrier in the LiDAR industry and helping customers incorporate LiDAR sensors into efficient commercialization of their projects. Our products have been sold to 26 countries and are being widely applied in industries such as autonomous driving, robots, 3D mapping, smart city, safety and more.
 
 Product
-------------------------------
+==============
 
+New product introduction
+-------------------------
 
+HAP
+~~~~~~~~~~~~~~~~~~~~~~
+Developed by Livox for over two years, Livox HAP is our first automotive-grade lidar designed for intelligent driving assistance systems. HAP meets up to 74 items of the automotive-grade reliability tests, and began serial production for OEMs such as Xpeng and FAW Jiefang since 2021 at Livox’s own brand-new automotive-grade manufacturing center, helping customers build industry-leading smart driving systems that deliver superior safety and comfort.
+`HAP <https://www.livoxtech.com/hap>`_
+
+.. image:: ../image/HAP.png
+
+Mid-360
+~~~~~~~~~~~~~~~~~~~~~~
+Mid-360 is the latest generation of Livox LiDAR for low speed robotics. This new product inherits the cost-effectiveness of the Livox Mid series and delivers 3D perception in 360 degrees. Compact and lightweight, this LiDAR module is easy to install. The Mid-360 is optimized based on the navigation and obstacle avoidance requirements of mobile robots. This allows you to use the LiDAR with algorithms to deliver a wide range of functions such as SLAM and obstacle avoidance.
+`Mid-360 <https://www.livoxtech.com/mid-360>`_
+
+.. image:: ../image/mid360.jpg
+
+Other product introduction 
+-----------------------------
 New MId-70
 ~~~~~~~~~~~~~~~~~~~~~~
 The Mid-70 is another component adding to the overall market appeal for Livox with tailored use applications such as low-speed autonomous driving and mobile robotics. By significantly expanding the vertical viewing angle, reducing blind spots and increasing close-range precision, the Mid-70 offers a thorough and comprehensive point cloud data quality to ensure safer autonomy.

@@ -14,7 +14,9 @@
 | 20220915            | v1.4.4      | 1.Add point cloud format description in spherical coordinate system<br/>2.Modified description of ROI configuration |
 | 20221028            | v1.4.5      | 1. Modified description of FOV configuration<br />2. Modified description of GPS time synchronization |
 | 20221114            | v1.4.6      | 1. Add description  of communication process                 |
-| 20221213            | v1.4.7      | Modified description of pattern_mode configuration           |
+| 20221213            | v1.4.7      | 1. Modified description of pattern_mode configuration        |
+| 20230904            | v1.4.8      | 1. Add description of log related protocols                  |
+
 
 # Overview
 
@@ -230,22 +232,28 @@ Format of control command is as follows:
 
 Command id list: 
 
-| Function Type      | CMD ID | Function                            |
-| ------------------ | ------ | ----------------------------------- |
-| Device Type Query  | 0x0000 | Discovery by broadcasting           |
-|                    |        |                                     |
-| LiDAR Information  | 0x0100 | Parameter information configuration |
-|                    | 0x0101 | Inquire LiDAR information           |
-|                    | 0x0102 | Push LiDAR information              |
-|                    |        |                                     |
-| Control CMD        | 0x0200 | Request reboot device               |
-|                    | 0x0201 | Restore factory settings            |
-|                    | 0x0202 | Set GPS timestamp                   |
-|                    |        |                                     |
-| General Uprade CMD | 0x0400 | Request to start upgrade            |
-|                    | 0x0401 | Firmware data transfer              |
-|                    | 0x0402 | Firmware transfer complete          |
-|                    | 0x0403 | Get firmware upgrade status         |
+| Function Type      | CMD ID | Function                                  |
+| ------------------ | ------ | ------------------------------------------|
+| Device Type Query  | 0x0000 | Discovery by broadcasting                 |
+|                    |        |                                           |
+| LiDAR Information  | 0x0100 | Parameter information configuration       |
+|                    | 0x0101 | Inquire LiDAR information                 |
+|                    | 0x0102 | Push LiDAR information                    |
+|                    |        |                                           |
+| Control CMD        | 0x0200 | Request reboot device                     |
+|                    | 0x0201 | Restore factory settings                  |
+|                    | 0x0202 | Set GPS timestamp                         |
+|                    |        |                                           |
+| log CMD            | 0x0300 | Log file push                             |
+|                    | 0x0301 | Log collection configuration              |
+|                    | 0x0302 | Log system time synchronization           |
+|                    | 0x0303 | Debug raw data collection configuration   |
+|                    |        |                                           |
+|                    |        |                                           |
+| General Uprade CMD | 0x0400 | Request to start upgrade                  |
+|                    | 0x0401 | Firmware data transfer                    |
+|                    | 0x0402 | Firmware transfer complete                |
+|                    | 0x0403 | Get firmware upgrade status               |
 
 ## Communication Process
 
@@ -424,6 +432,80 @@ ACK
 | ACK  | Name     | Offset (byte) | Data Type | Description                              |
 | ---- | -------- | ------------- | --------- | ---------------------------------------- |
 | data | ret_code | 0             | uint8_t   | Return code: <br/>(For details, see [5 Return Code Description](#5-Return-Code-Description) ) |
+## Log Command
+
+### 0x0300 Log file push
+
+Request
+
+| CMD  | Name      | Offset (byte) | Data Type | Description                                                        |
+| ---- | ------------ | ---------- | -------- | ------------------------------------------------------------ |
+| data | log_type     | 0          | uint8_t  | Log type: <br/>0 : real time log<br/> 3 : flash log
+|      | file_index   | 1          | uint8_t  | File index                                                   |
+|      | file_num     | 2          | uint8_t  | This field is valid only log_type is 3，it means the number of flash log|
+|      | flag         | 3          | uint8_t  | bit 0: <br/>1 means need ack<br/>bit 1: <br/>1 means create file<br/>bit 2: <br/>1 means finish file<br/>|
+|      | timestamp    | 4          | uint32_t | unix time stamp，this count starts at the Unix Epoch on January 1st, 1970 at UTC <br/>log file naming rules: <br/>log\_<log_type_name>\_<file_index>\_<system_time>.dat<br/>example: log_fully_log_1_20220613203140.dat|
+|      | rsvd         | 8          | uint16_t |                                                              |
+|      | trans_index  | 10         | uint32_t | send index                                                   |
+|      | log_data_len | 14         | uint16_t | log content length                                                 |
+|      | log_data     | 16         | --       | log content|
+
+ACK
+
+| ACK  | Name          | Offset (byte) | Data Type     | Description                                |
+| ---- | ----------- | ------ | -------- | --------------------------------- |
+| data | ret_code    | 0      | uint8_t  | Return code: <br/>(For details, see [5 Return Code Description](#5-Return-Code-Description) ) |
+|      | log_type    | 1      | uint8_t  |                                   |
+|      | file_index  | 2      | uint8_t  |                                   |
+|      | trans_index | 3      | uint32_t |                                   |
+
+
+
+### 0x0301 Log collection configuration 
+
+Request
+
+| CMD  | Name          | Offset (byte) | Data Type     | Description                                                         |
+| ---- | -------- | ---------- | -------- | ------------------------------------------------------------ |
+| data | log_type | 0          | uint8_t  | Log type: <br/>0 : real time log<br/> 3 : flash log |
+|      | enable   | 1          | uint8_t  | 0 : disable<br/>1 :  enable                                        |
+
+ACK
+
+| ACK  | Name          | Offset (byte) | Data Type     | Description                                |
+| ---- | -------- | ------ | ------- | --------------------------------- |
+| data | ret_code | 0      | uint8_t | Return code: <br/>(For details, see [5 Return Code Description](#5-Return-Code-Description) ) |
+
+### 0x0302 Log system time synchronization
+
+Request
+
+| CMD  | Name      | Offset (byte) | Data Type | Description                                                        |
+| ---- | --------- | ------ | -------- | ---------------------------------- |
+| data | timestamp | 0      | uint32_t | unix time stamp，this count starts at the Unix Epoch on January 1st, 1970 at UTC |
+
+ACK
+
+| ACK  | Name          | Offset (byte) | Data Type     | Description                                |
+| ---- | -------- | ------ | ------- | --------------------------------- |
+| data | ret_code | 0      | uint8_t | Return code: <br/>(For details, see [5 Return Code Description](#5-Return-Code-Description) ) |
+
+### 0x0303 Debug raw data collection configuration
+
+Request
+
+| CMD  | Name      | Offset (byte) | Data Type | Description                                                        |
+| ---- | -------- | ---------- | ---------- | ------------------------------------------------------------ |
+| data | enable   | 0          | uint8_t    | 0：disable<br/>1 :  enable                                          |
+|      | host_ip  | 1          | uint8_t[4] | Debug raw data destination IP address：AA.BB.CC.DD<br/>    data[0]: AA<br/>    data[1]: BB<br/>    data[2]: CC<br/>    data[3]: DD|
+|      | host_port| 5          | uint16_t   | Debug raw data destination port                                               |
+|      | reserved| 7          | uint16_t   | reserved|
+
+ACK
+
+| ACK  | Name          | Offset (byte) | Data Type     | Description                                |
+| ---- | -------- | ------ | ------- | --------------------------------- |
+| data | ret_code | 0      | uint8_t | Return code: <br/>(For details, see [5 Return Code Description](#5-Return-Code-Description) ) |
 
 ## General Upgrade  
 
