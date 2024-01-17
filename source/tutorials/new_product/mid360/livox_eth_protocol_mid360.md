@@ -17,6 +17,7 @@
 | 20221213            | v1.4.7      | 1. Modified description of pattern_mode configuration        |
 | 20230904            | v1.4.8      | 1. Add description of log related protocols                  |
 | 20240102            | v1.4.9      | 1. Add upgrade error related abnormal code description<br/>2. Add environment temp related high abnormal code|
+| 20240117            | v1.4.10     | 1. Update description of GPS sync high-level time of the second pulse|
 
 # Overview
 
