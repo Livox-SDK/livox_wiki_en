@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.4. Lidar Calibration &mdash; Livox wiki 0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.5. Livox SDK" href="livox_SDK.html" />
+    <link rel="prev" title="2.3. Data format and conversion" href="format_conversion.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Livox wiki
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Livox Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/production.html">1. Product</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/livox_scanning_pattern.html">2. Introduction to Livox Scanning Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/Point_Cloud_Characteristics_and_Coordinate_System%20.html">3. Livox Point Cloud and Coordinate System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/cases.html">4. Showcase</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">1. New Product</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html#other-product">2. Other Product</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="single_lidar_capture.html">2.1. Single lidar data acquisition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiple_lidars_capture.html">2.2. Multi-lidars data collection (using Livox Hub)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format_conversion.html">2.3. Data format and conversion</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.4. Lidar Calibration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lidar-lidar-calibration">2.4.1. Lidar-Lidar Calibration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#manual">2.4.1.1. Manual</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#automatic">2.4.1.2. Automatic</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lidar-camera-calibration">2.4.2. Lidar-Camera Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="livox_SDK.html">2.5. Livox SDK</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer profile</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data_summary/Livox_data_summary.html">1. Summary of Official Open Source Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_summary/third_part_summary.html">2. Summary of Unofficial Open Source Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_summary/dataset.html">3. Dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Livox wiki</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">1. </span>New Product</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2.4. </span>Lidar Calibration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/tutorials/other_product/sensor_calibration.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lidar-calibration">
+<h1><span class="section-number">2.4. </span>Lidar Calibration<a class="headerlink" href="#lidar-calibration" title="Link to this heading"></a></h1>
+<p>In multi-sensor intelligent body navigation, multiple sensors are usually installed for data fusion and calculation. In mobile mapping and environment perception, it is usually necessary to arrange multiple Lidars to ensure a larger FOV and provide a stable data source for more robust attitude estimation algorithms and rich environment details. However, no matter what kind of sensor: camera, lidar, millimeter wave radar, they all have their own coordinate system, that is, the data generated by all sensors are based on the sensor’s own coordinate system. In order to facilitate algorithm research and testing, it is necessary to convert the data obtained by the respective sensors to the same coordinate system, which is the external parameter calibration of the sensor.</p>
+<section id="lidar-lidar-calibration">
+<h2><span class="section-number">2.4.1. </span>Lidar-Lidar Calibration<a class="headerlink" href="#lidar-lidar-calibration" title="Link to this heading"></a></h2>
+<section id="manual">
+<h3><span class="section-number">2.4.1.1. </span>Manual<a class="headerlink" href="#manual" title="Link to this heading"></a></h3>
+<p>The Livox_Viewer integrates the function of manually calibrating Livox LiDARs, which can easily and accurately calibrate multiple Livox LiDARs with overlapping FOVs. For details, please refer to:
+<a class="reference external" href="https://www.livoxtech.com/3296f540ecf5458a8829e01cf429798e/downloads/Livox%20Viewer/Livox%20Viewer%20User%20Manual.pdf">Livox Viewer Manuel</a></p>
+</section>
+<section id="automatic">
+<h3><span class="section-number">2.4.1.2. </span>Automatic<a class="headerlink" href="#automatic" title="Link to this heading"></a></h3>
+<p>Livox provides tools based on C++ to realize automatic calculation of calibration external parameters between multiple lidars. For details, please refer to
+<a class="reference external" href="https://github.com/Livox-SDK/Livox_automatic_calibration">Livox calibration</a></p>
+</section>
+</section>
+<section id="lidar-camera-calibration">
+<h2><span class="section-number">2.4.2. </span>Lidar-Camera Calibration<a class="headerlink" href="#lidar-camera-calibration" title="Link to this heading"></a></h2>
+<p>Livox provides a method to manually calibrate the external parameters between Livox lidar and camera, and it has been verified on Mid-40, Horizon and Tele-15. It contains code for calculating internal camera parameters, obtaining calibration data, optimizing external parameters and lidar camera fusion applications. In this scheme, the corners of the calibration board are used as the calibration targets. Due to the non-repetitive scanning feature of Livox lidar, the density of the point cloud is relatively high, and it is easier to find the accurate position of the corners in the lidar point cloud. The calibration and fusion of camera lidar can also get good results. For details, please refer to:
+<a class="reference external" href="https://github.com/Livox-SDK/livox_camera_lidar_calibration/blob/master/README.md">Camera-LiDAR-Calibration Manual</a></p>
+<p>For the multi-sensor fusion scanning scheme, please refer to the Livox open source algorithm <a class="reference external" href="https://github.com/Livox-SDK/livox_high_precision_mapping">livox high precision mapping</a> which shows in detail how to synchronize and calibrate the Mid-40 lidar and apx-15 inertial navigation module, and use this component for real-time high-precision mapping.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="format_conversion.html" class="btn btn-neutral float-left" title="2.3. Data format and conversion" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="livox_SDK.html" class="btn btn-neutral float-right" title="2.5. Livox SDK" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Livox.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

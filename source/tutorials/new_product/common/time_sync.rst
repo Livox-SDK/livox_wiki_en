@@ -249,6 +249,9 @@ Timing requirements for PPS signal and GPRMC signal:
 | t3   | The delay of GPRMC data start sending relative to the rising edge of the pulse  |    0 ms ~ 900 ms  |    0 ms ~ 430 ms  |
 +------+---------------------------------------------------------------------------------+-------------------+-------------------+
 
+.. note::
+   The slope of PPS pulse is recommended to be greater than 1V/us
+
 GPS time synchronization method
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

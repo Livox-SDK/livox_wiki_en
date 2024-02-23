@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.2. Multi-lidars data collection (using Livox Hub) &mdash; Livox wiki 0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.3. Data format and conversion" href="format_conversion.html" />
+    <link rel="prev" title="2.1. Single lidar data acquisition" href="single_lidar_capture.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Livox wiki
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Livox Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/production.html">1. Product</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/livox_scanning_pattern.html">2. Introduction to Livox Scanning Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/Point_Cloud_Characteristics_and_Coordinate_System%20.html">3. Livox Point Cloud and Coordinate System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/cases.html">4. Showcase</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">1. New Product</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html#other-product">2. Other Product</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="single_lidar_capture.html">2.1. Single lidar data acquisition</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.2. Multi-lidars data collection (using Livox Hub)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#connection-and-configuration">2.2.1. Connection and Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collection-under-ros">2.2.2. Collection Under ROS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-livox-viewer-to-collect-data">2.2.3. Use Livox Viewer to Collect Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="format_conversion.html">2.3. Data format and conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensor_calibration.html">2.4. Lidar Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="livox_SDK.html">2.5. Livox SDK</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer profile</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data_summary/Livox_data_summary.html">1. Summary of Official Open Source Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_summary/third_part_summary.html">2. Summary of Unofficial Open Source Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_summary/dataset.html">3. Dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Livox wiki</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">1. </span>New Product</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2.2. </span>Multi-lidars data collection (using Livox Hub)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/tutorials/other_product/multiple_lidars_capture.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="multi-lidars-data-collection-using-livox-hub">
+<h1><span class="section-number">2.2. </span>Multi-lidars data collection (using Livox Hub)<a class="headerlink" href="#multi-lidars-data-collection-using-livox-hub" title="Link to this heading"></a></h1>
+<section id="connection-and-configuration">
+<h2><span class="section-number">2.2.1. </span>Connection and Configuration<a class="headerlink" href="#connection-and-configuration" title="Link to this heading"></a></h2>
+<p>Take a Livox Mid-40 and a Livox Horizon as an example:</p>
+<p><strong>dependencies:</strong>：ubuntu 16.04、ROS、Livox-SDK、Livox ROS driver（see the driver for the detailed process of downloading and installing of this part <span class="xref std std-doc">驱动</span>）</p>
+<p><strong>Hardware part:</strong>：Livox Mid-40 × 1, Livox Horizon × 1, Livox Hub × 1, Gigabit Ethernet cable × 1, Livox Hub power cord × 1, Livox lidar battery × 1, PC × 1.</p>
+<p><strong>synchronization:</strong>：For time stamp synchronization between multiple livox LiDARs, please refer to:  <a class="reference external" href="https://github.com/Livox-SDK/Livox-SDK/wiki/livox-device-time-synchronization-manual">Timestamp Synchronization</a></p>
+<p><strong>Wiring and IP configuration:</strong>：Livox Hub uses UDP communication protocol for data communication through Ethernet, and supports two types of IP address configuration: static IP address and dynamic IP address. The factory default is to use Dynamic Host Configuration Protocol (DHCP) to assign IP addresses. According to different IP address settings, the physical connection is slightly different.</p>
+<ul class="simple">
+<li><p>When using a static IP address to connect, the physical connection is as shown in the figure below:</p></li>
+</ul>
+<img alt="tutorials/image/static_ip.png" src="tutorials/image/static_ip.png" />
+<ul class="simple">
+<li><p>When a dynamic IP address is used for connection, the physical connection is shown below:</p></li>
+</ul>
+<img alt="tutorials/image/dynamic_ip.png" src="tutorials/image/dynamic_ip.png" />
+<p>Livox Hub uses Dynamic Host Configuration Protocol (DHCP) to assign IP addresses by default when it leaves the factory. If you want to use static IP to connect, you need to connect to a router for settings. The steps are as follows:</p>
+<p>1.Connect the Livox Hub, Livox Lidar, PC and power supply through the router according to the dynamic IP address connection method as above figure.</p>
+<p>2.Run Livox Viewer on the computer and click to open the device manager. Select Livox Hub and click to open the device properties page. Set the IP address of Livox Hub as a static IP address in the device properties page. Note that the static IP address of Livox Hub should be set to 192.168.1.X (where X is any number between 2 and 233).</p>
+<p>3.After setting up, disconnect all connections to Livox Hub.</p>
+<p>4.If Livox Hub is in static IP mode, the computer should also be set to static IP mode (if the computer uses dynamic IP mode, Livox Hub may not be found). The static IP address of the computer should be set to 192.168.1.X (where X is any number between 2 and 233), and it cannot be the same as the IP address of the connected Livox Hub.</p>
+<p>If you have any questions about the connection and IP configuration of the Hub, please refer to the “Connection” section of the “Livox Hub User Manual v1.2” on the Livox official website. The download link is as follows: <a class="reference external" href="https://www.livoxtech.com/3296f540ecf5458a8829e01cf429798e/downloads/20191128/Livox%20Hub%20Series%20User%20Manual%2020191018.pdf">Livox Hub manuel v1.2</a></p>
+<p>This example uses static IP configuration, as shown in the following figure:</p>
+<img alt="tutorials/image/static_IP_config.rst" src="tutorials/image/static_IP_config.rst" />
+<p>Up to 9 Livox Lidars can be connected to the Livox Hub at the same time. In this example, a Livox Horizon and a Livox Mid-40 are connected. If you want to collect more Lidars at the same time, you can connect directly.</p>
+</section>
+<section id="collection-under-ros">
+<h2><span class="section-number">2.2.2. </span>Collection Under ROS<a class="headerlink" href="#collection-under-ros" title="Link to this heading"></a></h2>
+<p>After the connection is successful, compile in the local ws_livox path:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">catkin_make</span>
+</pre></div>
+</div>
+<p>Update the current ROS package environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>source ./devel/setup.bash``
+</pre></div>
+</div>
+<p>Use the ROS launch file to load the LIvox ros driver</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>roslaunch livox_ros_driver livox_hub_rviz.launch``
+</pre></div>
+</div>
+<p>All launch files in the Livox driver are located under the path:
+“ws_livox/src/livox_ros_driver/launch”.Different launch files have different configuration parameter values. Different launch files can be started according to different usage scenarios （detailed launch configuration can be found in the description section of <a class="reference external" href="https://github.com/Livox-SDK/livox_ros_driver">Livox ROS Driver github</a> 4.1 launch configuration file）</p>
+<p>The livox_hub_rviz.launch will automatically connect to the Livox Hub device, publish pointcloud2 format point cloud data, and automatically load rviz to display real-time point cloud data, as shown in the following figure:</p>
+<img alt="tutorials/image/ros_hub_scanning.png" src="tutorials/image/ros_hub_scanning.png" />
+<p>The red part of the point cloud is the image scanned by Livox Horizon, and the purple part is the image scanned by Livox Mid-40</p>
+</section>
+<section id="use-livox-viewer-to-collect-data">
+<h2><span class="section-number">2.2.3. </span>Use Livox Viewer to Collect Data<a class="headerlink" href="#use-livox-viewer-to-collect-data" title="Link to this heading"></a></h2>
+<p>After the connection is successful, open a terminal in the Livox Viewer folder and run the following command to open the Livox Viewer program:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">livox_viewer</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>Click <img alt="Viewer_manager" src="tutorials/image/devices_manager.png" /> to Open the device manager and select Livox Hub. The IP address of Livox Hub may not match the IP address of the PC when connecting for the first time. If you have configured the Livox Hub and PC with static IP according to the above steps, you can click Network Adapter—refresh Adapter on the toolbar to refresh the configuration.</p>
+<p>Open the Hub button and click play to display the real-time scan data of multiple lidars, as shown in the figure below:</p>
+<img alt="tutorials/image/two_lidar_scanning.png" src="tutorials/image/two_lidar_scanning.png" />
+<p>The yellow part of the point cloud is the data scanned by Livox Horizon, and the blue part of the point cloud is the data scanned by Livox Mid-40.</p>
+<p>Similar to single lidar data recording, you can click the record button on the toolbar to record the lvx format file, pause playback or click this button again to end the recording.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="single_lidar_capture.html" class="btn btn-neutral float-left" title="2.1. Single lidar data acquisition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="format_conversion.html" class="btn btn-neutral float-right" title="2.3. Data format and conversion" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Livox.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,2150 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.2.1.1. Livox LiDAR Communication Protocol–Mid360 &mdash; Livox wiki 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="1.2.3.1. Composition format" href="hms_code_mid360.html" />
+    <link rel="prev" title="1.2. Mid-360" href="mid360.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Livox wiki
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Livox Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/production.html">1. Product</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/livox_scanning_pattern.html">2. Introduction to Livox Scanning Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/Point_Cloud_Characteristics_and_Coordinate_System%20.html">3. Livox Point Cloud and Coordinate System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/cases.html">4. Showcase</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">1. New Product</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../hap/hap.html">1.1. HAP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="mid360.html">1.2. Mid-360</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="mid360.html#communication-protocol">1.2.1. Communication Protocol</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">1.2.1.1. Livox LiDAR Communication Protocol–Mid360</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#overview">1.2.1.2. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#point-cloud-imu-data-protocol">1.2.1.3. Point Cloud &amp; IMU Data Protocol</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#control-command">1.2.1.4. Control Command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cmd-detials">1.2.1.5. CMD Detials</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#return-code-description">1.2.1.6. Return Code Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crc-algorithm">1.2.1.7. CRC Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mid360.html#supported-time-synchronization-methods">1.2.2. Supported Time Synchronization Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mid360.html#hms-diagnostic-code-introduction">1.2.3. HMS Diagnostic Code Introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../common/index.html">1.3. Public Information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html#other-product">2. Other Product</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer profile</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_summary/Livox_data_summary.html">1. Summary of Official Open Source Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_summary/third_part_summary.html">2. Summary of Unofficial Open Source Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_summary/dataset.html">3. Dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Livox wiki</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><span class="section-number">1. </span>New Product</a></li>
+          <li class="breadcrumb-item"><a href="mid360.html"><span class="section-number">1.2. </span>Mid-360</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">1.2.1.1. </span>Livox LiDAR Communication Protocol–Mid360</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/tutorials/new_product/mid360/livox_eth_protocol_mid360.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="livox-lidar-communication-protocol-mid360">
+<h1><span class="section-number">1.2.1.1. </span>Livox LiDAR Communication Protocol–Mid360<a class="headerlink" href="#livox-lidar-communication-protocol-mid360" title="Link to this heading"></a></h1>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Release History</strong></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Date</strong></p></td>
+<td><p><strong>Version</strong></p></td>
+<td><p><strong>Description</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>20220519</p></td>
+<td><p>v1.0</p></td>
+<td><p>1. Initialized version</p></td>
+</tr>
+<tr class="row-even"><td><p>20220530</p></td>
+<td><p>v1.1</p></td>
+<td><p>1. Merge status and parameter <code class="docutils literal notranslate"><span class="pre">key_value</span></code> information fields<br />2. The information push command supports pushing LiDAR parameter information and status information</p></td>
+</tr>
+<tr class="row-odd"><td><p>20220602</p></td>
+<td><p>v1.2</p></td>
+<td><p>1. Add <code class="docutils literal notranslate"><span class="pre">log</span></code> related commands</p></td>
+</tr>
+<tr class="row-even"><td><p>20220622</p></td>
+<td><p>v1.3</p></td>
+<td><p>1. Port 56000 only supports discovery command by broadcasting. Discovery command by broadcasting <code class="docutils literal notranslate"><span class="pre">ack</span></code> adds the control command port field of the current LiDAR</p></td>
+</tr>
+<tr class="row-odd"><td><p>20220628</p></td>
+<td><p>v1.4</p></td>
+<td><p>1. Update working status description</p></td>
+</tr>
+<tr class="row-even"><td><p>20220629</p></td>
+<td><p>v1.4.1</p></td>
+<td><p>1. Add <code class="docutils literal notranslate"><span class="pre">firmware</span> <span class="pre">type</span></code> to <code class="docutils literal notranslate"><span class="pre">key</span> <span class="pre">value</span> <span class="pre">list</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>20220815</p></td>
+<td><p>v1.4.2</p></td>
+<td><p>1. Add <code class="docutils literal notranslate"><span class="pre">detect_mode</span> <span class="pre">&amp;</span> <span class="pre">func_io_cfg</span></code> to <code class="docutils literal notranslate"><span class="pre">key</span> <span class="pre">value</span> <span class="pre">list</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>20220825</p></td>
+<td><p>v1.4.3</p></td>
+<td><p>1.Add <code class="docutils literal notranslate"><span class="pre">tag_type</span></code> to the point cloud frame header to describe the type of point cloud <code class="docutils literal notranslate"><span class="pre">tag</span></code><br/>2.Added description of <code class="docutils literal notranslate"><span class="pre">tag</span></code> type</p></td>
+</tr>
+<tr class="row-odd"><td><p>20220915</p></td>
+<td><p>v1.4.4</p></td>
+<td><p>1.Add point cloud format description in spherical coordinate system<br/>2.Modified description of ROI configuration</p></td>
+</tr>
+<tr class="row-even"><td><p>20221028</p></td>
+<td><p>v1.4.5</p></td>
+<td><p>1. Modified description of FOV configuration<br />2. Modified description of GPS time synchronization</p></td>
+</tr>
+<tr class="row-odd"><td><p>20221114</p></td>
+<td><p>v1.4.6</p></td>
+<td><p>1. Add description  of communication process</p></td>
+</tr>
+<tr class="row-even"><td><p>20221213</p></td>
+<td><p>v1.4.7</p></td>
+<td><p>1. Modified description of pattern_mode configuration</p></td>
+</tr>
+<tr class="row-odd"><td><p>20230904</p></td>
+<td><p>v1.4.8</p></td>
+<td><p>1. Add description of log related protocols</p></td>
+</tr>
+<tr class="row-even"><td><p>20240102</p></td>
+<td><p>v1.4.9</p></td>
+<td><p>1. Add upgrade error related abnormal code description<br/>2. Add environment temp related high abnormal code</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="overview">
+<h1><span class="section-number">1.2.1.2. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h1>
+<p>This communication protocol is only used for livox Mid360 LiDAR.</p>
+<section id="protocol-types">
+<h2><span class="section-number">1.2.1.2.1. </span>Protocol Types<a class="headerlink" href="#protocol-types" title="Link to this heading"></a></h2>
+<p>There are two types of data protocols between the user and the LiDAR, see as below:</p>
+<p><strong>Point cloud data protocol:</strong></p>
+<ul>
+<li><p>Point cloud data;</p></li>
+<li><p>IMU data.</p>
+<p>For details, see <a class="reference internal" href="#2.3-Data-Types"><span class="xref myst">2.3 Data Types</span></a>.</p>
+</li>
+</ul>
+<p><strong>Control command protocol:</strong></p>
+<ul>
+<li><p>Configure and query LiDAR parameters;</p></li>
+<li><p>LiDAR reset;</p></li>
+<li><p>Push and query LiDAR status;</p></li>
+<li><p>Upgrade LiDAR;</p>
+<p>For details, see <a class="reference internal" href="#4-CMD-Detials"><span class="xref myst">4 CMD Detials</span></a></p>
+</li>
+</ul>
+<p>Both protocols are encapsulated using UDP data segments, and the protocol data is <strong>Little-endian</strong>.</p>
+</section>
+<section id="lidar-working-status">
+<h2><span class="section-number">1.2.1.2.2. </span>LiDAR Working Status<a class="headerlink" href="#lidar-working-status" title="Link to this heading"></a></h2>
+<p>The state machine of the current LiDAR is shown in the figure, The state enumeration values currently used by the Mid360 are as follows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>LiDAR Status</p></th>
+<th class="head"><p>Enumeration Value</p></th>
+<th class="head"><p>Whether to Support User Settings</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SAMPLING</p></td>
+<td><p>0x01</p></td>
+<td><p>Support(By Parameter Configuration)</p></td>
+</tr>
+<tr class="row-odd"><td><p>IDLE</p></td>
+<td><p>0x02</p></td>
+<td><p>Support(By Parameter Configuration)</p></td>
+</tr>
+<tr class="row-even"><td><p>ERROR</p></td>
+<td><p>0x04</p></td>
+<td><p>Not Support</p></td>
+</tr>
+<tr class="row-odd"><td><p>SELFCHECK</p></td>
+<td><p>0x05</p></td>
+<td><p>Not Support</p></td>
+</tr>
+<tr class="row-even"><td><p>MOTORSTARUP</p></td>
+<td><p>0x06</p></td>
+<td><p>Not Support</p></td>
+</tr>
+<tr class="row-odd"><td><p>UPGRADE</p></td>
+<td><p>0x08</p></td>
+<td><p>Support(By Entering Upgrade)</p></td>
+</tr>
+<tr class="row-even"><td><p>READY</p></td>
+<td><p>0x09</p></td>
+<td><p>Support(By Parameter Configuration)</p></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="" src="../../../_images/Mid360_state_machine_english.png" /></p>
+</section>
+<section id="port-description">
+<h2><span class="section-number">1.2.1.2.3. </span>Port Description<a class="headerlink" href="#port-description" title="Link to this heading"></a></h2>
+<p>The source port and destination port are explained as follows according to the different data types:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Data Type</p></th>
+<th class="head"><p>Transmission Direction</p></th>
+<th class="head"><p>LiDAR Port</p></th>
+<th class="head"><p>Host Computer Port</p></th>
+<th class="head"><p>Transmission Type</p></th>
+<th class="head"><p>Transmission Protocol</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Device Type Query</p></td>
+<td><p>LiDAR &lt;—-&gt; PC</p></td>
+<td><p>56000</p></td>
+<td><p>Any</p></td>
+<td><p>Broadcast</p></td>
+<td><p>UDP</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>56000 is used as the fixed listening port of Livox LiDAR, mainly used for the host computer to query the device through broadcast:</strong></p>
+<p><strong>1. Only the device type query command (cmd_id: 0x0000) is supported. The host computer obtains the specific device type of the LiDAR through this port. This command response is replied by broadcast, so that when the host computer and the LiDAR IP are not in the same network segment, the host computer can still identify the LiDAR</strong>.</p>
+<p>Mid-360 Communication Port:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Data Type</p></th>
+<th class="head"><p>Transmission Direction</p></th>
+<th class="head"><p>LiDAR Port</p></th>
+<th class="head"><p>Host Computer Port</p></th>
+<th class="head"><p>Transmission Type</p></th>
+<th class="head"><p>Transmission Protocol</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Control Command</p></td>
+<td><p>LiDAR&lt;—&gt; Host Computer</p></td>
+<td><p>56100</p></td>
+<td><p>Any (56101 recommended)</p></td>
+<td><p>Unicast</p></td>
+<td><p>UDP</p></td>
+</tr>
+<tr class="row-odd"><td><p>Push Command</p></td>
+<td><p>LiDAR —&gt; Host Computer</p></td>
+<td><p>56200</p></td>
+<td><p>Configurable (default 56201)</p></td>
+<td><p>Default Unicast</p></td>
+<td><p>UDP</p></td>
+</tr>
+<tr class="row-even"><td><p>Point Cloud Data</p></td>
+<td><p>LiDAR —&gt; Host Computer</p></td>
+<td><p>56300</p></td>
+<td><p>Configurable (default 56301)</p></td>
+<td><p>Default Unicast(Support Multicast)</p></td>
+<td><p>UDP</p></td>
+</tr>
+<tr class="row-odd"><td><p>IMU Data</p></td>
+<td><p>LiDAR —&gt; Host Computer</p></td>
+<td><p>56400</p></td>
+<td><p>Configurable (default 56401)</p></td>
+<td><p>Default Unicast(Support Multicast)</p></td>
+<td><p>UDP</p></td>
+</tr>
+<tr class="row-even"><td><p>LOG Data</p></td>
+<td><p>LiDAR &lt;—&gt; Host Computer</p></td>
+<td><p>56500</p></td>
+<td><p>Any (56501 recommended)</p></td>
+<td><p>Unicast</p></td>
+<td><p>UDP</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="point-cloud-imu-data-protocol">
+<h1><span class="section-number">1.2.1.3. </span>Point Cloud &amp; IMU Data Protocol<a class="headerlink" href="#point-cloud-imu-data-protocol" title="Link to this heading"></a></h1>
+<section id="protocol-format">
+<h2><span class="section-number">1.2.1.3.1. </span>Protocol Format<a class="headerlink" href="#protocol-format" title="Link to this heading"></a></h2>
+<p><img alt="" src="../../../_images/dot_data.png" /></p>
+<p>Point cloud data format:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Offset (bytes)</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>version</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>Package protocol version: currently 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>length</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>The length of the entire UDP data segment starting from <code class="docutils literal notranslate"><span class="pre">version</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>time_interval</p></td>
+<td><p>3</p></td>
+<td><p>2</p></td>
+<td><p>Intra-frame point cloud sampling time (Unit: 0.1us);<br>In this frame of point cloud data, the time of the last point minus the time of the first point.</p></td>
+</tr>
+<tr class="row-odd"><td><p>dot_num</p></td>
+<td><p>5</p></td>
+<td><p>2</p></td>
+<td><p>The current UDP packet data field contains the number of points.</p></td>
+</tr>
+<tr class="row-even"><td><p>udp_cnt</p></td>
+<td><p>7</p></td>
+<td><p>2</p></td>
+<td><p>Point cloud UDP packet count, each UDP packet is incremented by 1 in turn, and cleared to 0 at the beginning of the point cloud frame.</p></td>
+</tr>
+<tr class="row-odd"><td><p>frame_cnt</p></td>
+<td><p>9</p></td>
+<td><p>1</p></td>
+<td><p>Point cloud frame count, plus 1 for each frame of point cloud (10Hz/15Hz, etc.);<br />For non-repeating scans, this field is invalid.</p></td>
+</tr>
+<tr class="row-even"><td><p>data_type</p></td>
+<td><p>10</p></td>
+<td><p>1</p></td>
+<td><p>Data type. For details, see <a class="reference internal" href="#2.3-Data-Types"><span class="xref myst">2.3 Data Types</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>time_type</p></td>
+<td><p>11</p></td>
+<td><p>1</p></td>
+<td><p>Timestamp type. For details, see <a class="reference internal" href="#2.2-Timestamp"><span class="xref myst">2.2 Timestamp</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>reserved</p></td>
+<td><p>12</p></td>
+<td><p>12</p></td>
+<td><p>Reserved.</p></td>
+</tr>
+<tr class="row-odd"><td><p>crc32</p></td>
+<td><p>24</p></td>
+<td><p>4</p></td>
+<td><p>Timestamp + data segment check code, using CRC-32 algorithm. For details, see <a class="reference internal" href="#6-CRC-Algorithm"><span class="xref myst">6 CRC Algorithm</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>timestamp</p></td>
+<td><p>28</p></td>
+<td><p>8</p></td>
+<td><p>Point cloud timestamp. For details, see <a class="reference internal" href="#2.3-Timestamp"><span class="xref myst">2.2 Timestamp</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>data</p></td>
+<td><p>36</p></td>
+<td><p>–</p></td>
+<td><p>Data information. For details, see <a class="reference internal" href="#2.3-Data-Types"><span class="xref myst">2.3 Data Types</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="timestamp">
+<h2><span class="section-number">1.2.1.3.2. </span>Timestamp<a class="headerlink" href="#timestamp" title="Link to this heading"></a></h2>
+<p>The LiDAR system supports GPS time synchronization and PTP network time synchronization.</p>
+<p>GPS time synchronization can be input through UDP packets, or through serial port GPRMC packets, see the time synchronization documentation for more details;</p>
+<p>PTP time synchronization supports IEEE1588v2.0 UDP/IP synchronization, and gPTP L2 synchronization;</p>
+<p>The timestamp in each packet represents the time of the first point cloud, and there are N point clouds in each packet. The time of these N point clouds is equally spaced, and the total time interval is the value of <code class="docutils literal notranslate"><span class="pre">time_interval</span></code>.</p>
+<p>Timestamp type:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Timestamp Type</p></th>
+<th class="head"><p>Sync Source Type</p></th>
+<th class="head"><p>Data Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>No synchronization source, the timestamp is the time when the LiDAR is turned on</p></td>
+<td><p>uint64_t</p></td>
+<td><p>Unit: ns</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>gPTP/PTP synchronization, the time of master clock source as a timestamp</p></td>
+<td><p>uint64_t</p></td>
+<td><p>Unit: ns</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>GPS time synchronization</p></td>
+<td><p>uint64_t</p></td>
+<td><p>Unit: ns</p></td>
+</tr>
+</tbody>
+</table>
+<p>Notice:</p>
+<ul class="simple">
+<li><p>The time limit for GPS time synchronization is from 1/1/2000 to 31/12/2037</p></li>
+<li><p>PTP time synchronization does not support IEEE1588v2.1</p></li>
+<li><p>Not recommended for use in scenarios where IEEE1588v2.0 and gPTP coexist;</p></li>
+</ul>
+</section>
+<section id="data-types">
+<h2><span class="section-number">1.2.1.3.3. </span>Data Types<a class="headerlink" href="#data-types" title="Link to this heading"></a></h2>
+<p>There are N samples in each packet. The size of N depends on the data type.</p>
+<p>There are four data types from 0 to 3, the default data type is 1:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Data Type</p></th>
+<th class="head"><p>Sampling Type</p></th>
+<th class="head"><p>Echo Mode</p></th>
+<th class="head"><p>Coordinate Mode</p></th>
+<th class="head"><p>N</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>IMU data</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>Point cloud data 1</p></td>
+<td><p>Single echo mode</p></td>
+<td><p>Cartesian coordinates(32bit)</p></td>
+<td><p>96</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Point cloud data 2</p></td>
+<td><p>Single echo mode</p></td>
+<td><p>Cartesian coordinates(16bit)</p></td>
+<td><p>96</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>Point cloud data 3</p></td>
+<td><p>Single echo mode</p></td>
+<td><p>Spherical coordinates</p></td>
+<td><p>96</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Data Type 0</strong></p>
+<p>IMU Data:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Offset (bytes)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>gyro_x</p></td>
+<td><p>0</p></td>
+<td><p>float</p></td>
+<td><p>Unit: rad/s</p></td>
+</tr>
+<tr class="row-odd"><td><p>gyro_y</p></td>
+<td><p>4</p></td>
+<td><p>float</p></td>
+<td><p>Unit: rad/s</p></td>
+</tr>
+<tr class="row-even"><td><p>gyro_z</p></td>
+<td><p>8</p></td>
+<td><p>float</p></td>
+<td><p>Unit: rad/s</p></td>
+</tr>
+<tr class="row-odd"><td><p>acc_x</p></td>
+<td><p>12</p></td>
+<td><p>float</p></td>
+<td><p>Unit: g</p></td>
+</tr>
+<tr class="row-even"><td><p>acc_y</p></td>
+<td><p>16</p></td>
+<td><p>float</p></td>
+<td><p>Unit: g</p></td>
+</tr>
+<tr class="row-odd"><td><p>acc_z</p></td>
+<td><p>20</p></td>
+<td><p>float</p></td>
+<td><p>Unit: g</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Data Type 1</strong></p>
+<p>Single echo Cartesian coordinate data format:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Offset (bytes)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>x</p></td>
+<td><p>0</p></td>
+<td><p>int32_t</p></td>
+<td><p>X axis, Unit: mm</p></td>
+</tr>
+<tr class="row-odd"><td><p>y</p></td>
+<td><p>4</p></td>
+<td><p>int32_t</p></td>
+<td><p>Y axis, Unit: mm</p></td>
+</tr>
+<tr class="row-even"><td><p>z</p></td>
+<td><p>8</p></td>
+<td><p>int32_t</p></td>
+<td><p>Z axis, Unit: mm</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reflectivity</p></td>
+<td><p>12</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Reflectivity</p></td>
+</tr>
+<tr class="row-even"><td><p>Tag</p></td>
+<td><p>13</p></td>
+<td><p>uint8_t</p></td>
+<td><p>According to the point cloud frame header <code class="docutils literal notranslate"><span class="pre">pack_info.tag_type</span></code> field, match the specific tag type. For details, see <a class="reference internal" href="#2.4-Tag-Information"><span class="xref myst">2.4 Tag Information</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Data Type 2</strong></p>
+<p>Single echo Cartesian coordinate data format (16bit):</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Offset (bytes)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description (10mm is the resolution in 16bit format)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>x</p></td>
+<td><p>0</p></td>
+<td><p>int16_t</p></td>
+<td><p>X axis, Unit: 10mm</p></td>
+</tr>
+<tr class="row-odd"><td><p>y</p></td>
+<td><p>2</p></td>
+<td><p>int16_t</p></td>
+<td><p>Y axis, Unit: 10mm</p></td>
+</tr>
+<tr class="row-even"><td><p>z</p></td>
+<td><p>4</p></td>
+<td><p>int16_t</p></td>
+<td><p>Z axis, Unit: 10mm</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reflectivity</p></td>
+<td><p>6</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Reflectivity</p></td>
+</tr>
+<tr class="row-even"><td><p>Tag</p></td>
+<td><p>7</p></td>
+<td><p>uint8_t</p></td>
+<td><p>According to the point cloud frame header <code class="docutils literal notranslate"><span class="pre">pack_info.tag_type</span></code> field, match the specific tag type. For details, see <a class="reference internal" href="#2.4-Tag-Information"><span class="xref myst">2.4 Tag Information</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Data Type 3</strong></p>
+<p>Single return spherical coordinate data format:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Offset (bytes)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description (10mm is the resolution in 16bit format)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>depth</p></td>
+<td><p>0</p></td>
+<td><p>uint32_t</p></td>
+<td><p>Depth, Unit: mm</p></td>
+</tr>
+<tr class="row-odd"><td><p>theta</p></td>
+<td><p>4</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Zenith angle[0, 18000], Unit: 0.01 degree</p></td>
+</tr>
+<tr class="row-even"><td><p>phi</p></td>
+<td><p>6</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Azimuth[0, 36000], Unit: 0.01 degree</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reflectivity</p></td>
+<td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Reflectivity</p></td>
+</tr>
+<tr class="row-even"><td><p>Tag</p></td>
+<td><p>9</p></td>
+<td><p>uint8_t</p></td>
+<td><p>According to the point cloud frame header <code class="docutils literal notranslate"><span class="pre">pack_info.tag_type</span></code> field, match the specific tag type. For details, see <a class="reference internal" href="#2.4-Tag-Information"><span class="xref myst">2.4 Tag Information</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tag-information">
+<h2><span class="section-number">1.2.1.3.4. </span>Tag Information<a class="headerlink" href="#tag-information" title="Link to this heading"></a></h2>
+<p>Tag mainly indicates other additional information of the detection point.The point cloud is marked as an 8bit unsigned integer, which is divided into several areas according to the bit, and each area represents an attribute of the detection point, including rain, fog, dust, adhesion point clouds between similar objects, etc.; Among them, the confidence level indicates the reliability of the detection point, and the normal point is generally 0 (High confidence); Low confidence indicates that the detection point is greatly affected by the corresponding attributes, and the reliability of the detection result is poor; if necessary, the point cloud can be filtered based on this information.Details are as follows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bit 6~7</p></td>
+<td><p>Reserved</p></td>
+</tr>
+<tr class="row-odd"><td><p>bit 4~5</p></td>
+<td><p>Properties of Detection Points: other<br/>0: High confidence (normal point)<br/>1: Medium confidence<br/>2: Low confidence<br/>3: Reserved</p></td>
+</tr>
+<tr class="row-even"><td><p>bit 2~3</p></td>
+<td><p>Properties of Detection Points: Rain, fog, dust and other tiny particles<br/>0: High confidence (normal point)<br/>1: Medium confidence<br/>2: Low confidence<br/>3: Reserved</p></td>
+</tr>
+<tr class="row-odd"><td><p>bit 0~1</p></td>
+<td><p>Properties of Detection Points: Glue point cloud between adjacent objects<br/>0: High confidence (normal point)<br/>1: Medium confidence<br/>2: Low confidence<br/>3: Reserved</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="control-command">
+<h1><span class="section-number">1.2.1.4. </span>Control Command<a class="headerlink" href="#control-command" title="Link to this heading"></a></h1>
+<section id="frame-format">
+<h2><span class="section-number">1.2.1.4.1. </span>Frame Format<a class="headerlink" href="#frame-format" title="Link to this heading"></a></h2>
+<p><img alt="" src="../../../_images/cmd_data.png" /></p>
+<p>Format of control command is as follows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Offset(byte)</p></th>
+<th class="head"><p>Size (byte)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>sof</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>Starting byte, fixed to be 0xAA.</p></td>
+</tr>
+<tr class="row-odd"><td><p>version</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>Protocol version, 0 for current version.</p></td>
+</tr>
+<tr class="row-even"><td><p>length</p></td>
+<td><p>2</p></td>
+<td><p>2</p></td>
+<td><p>Length of frame; <br />The number of bytes from beginning of <code class="docutils literal notranslate"><span class="pre">sof</span></code> to end of entire <code class="docutils literal notranslate"><span class="pre">data</span></code> segment. Max value: 1400.</p></td>
+</tr>
+<tr class="row-odd"><td><p>seq_num</p></td>
+<td><p>4</p></td>
+<td><p>4</p></td>
+<td><p>This field is incremented by 1 for each new REQ request message; <br />This field of ACK message is the same as REQ and can be used for message matching.</p></td>
+</tr>
+<tr class="row-even"><td><p>cmd_id</p></td>
+<td><p>8</p></td>
+<td><p>2</p></td>
+<td><p>Different types of messages are distinguished by this field, For details, see <a class="reference internal" href="#5-Return-Code-Description"><span class="xref myst">5 Return Code Description</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>cmd_type</p></td>
+<td><p>10</p></td>
+<td><p>1</p></td>
+<td><p>Command Type: <br/>0x00: REQ, actively send data request;<br/>0x01: ACK, response to REQ data.</p></td>
+</tr>
+<tr class="row-even"><td><p>sender_type</p></td>
+<td><p>11</p></td>
+<td><p>1</p></td>
+<td><p>The sender’s device type: <br/>0x00: Host computer, <br/>0x01: LiDAR.</p></td>
+</tr>
+<tr class="row-odd"><td><p>resv</p></td>
+<td><p>12</p></td>
+<td><p>6</p></td>
+<td><p>Reserved.</p></td>
+</tr>
+<tr class="row-even"><td><p>crc16</p></td>
+<td><p>18</p></td>
+<td><p>2</p></td>
+<td><p>Frame header checksum, check data starts from sof to crc16 (not included), 18 bytes in total. For details, see <a class="reference internal" href="#6-CRC-Algorithm"><span class="xref myst">6 CRC Algorithm</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>crc32</p></td>
+<td><p>20</p></td>
+<td><p>4</p></td>
+<td><p>Frame data checksum. For details, see <a class="reference internal" href="#6-CRC-Algorithm"><span class="xref myst">6 CRC Algorithm</span></a>;<br/>When length of data field is 0, CRC32 needs to be padded with 0.</p></td>
+</tr>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>24</p></td>
+<td><p>n</p></td>
+<td><p><a class="reference internal" href="#4-CMD-detials"><span class="xref myst">4 CMD detials</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="command-id">
+<h2><span class="section-number">1.2.1.4.2. </span>Command ID<a class="headerlink" href="#command-id" title="Link to this heading"></a></h2>
+<p>Command id list:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function Type</p></th>
+<th class="head"><p>CMD ID</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Device Type Query</p></td>
+<td><p>0x0000</p></td>
+<td><p>Discovery by broadcasting</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>LiDAR Information</p></td>
+<td><p>0x0100</p></td>
+<td><p>Parameter information configuration</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>0x0101</p></td>
+<td><p>Inquire LiDAR information</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>0x0102</p></td>
+<td><p>Push LiDAR information</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Control CMD</p></td>
+<td><p>0x0200</p></td>
+<td><p>Request reboot device</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>0x0201</p></td>
+<td><p>Restore factory settings</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>0x0202</p></td>
+<td><p>Set GPS timestamp</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>log CMD</p></td>
+<td><p>0x0300</p></td>
+<td><p>Log file push</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>0x0301</p></td>
+<td><p>Log collection configuration</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>0x0302</p></td>
+<td><p>Log system time synchronization</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>0x0303</p></td>
+<td><p>Debug raw data collection configuration</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>General Uprade CMD</p></td>
+<td><p>0x0400</p></td>
+<td><p>Request to start upgrade</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>0x0401</p></td>
+<td><p>Firmware data transfer</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>0x0402</p></td>
+<td><p>Firmware transfer complete</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>0x0403</p></td>
+<td><p>Get firmware upgrade status</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="communication-process">
+<h2><span class="section-number">1.2.1.4.3. </span>Communication Process<a class="headerlink" href="#communication-process" title="Link to this heading"></a></h2>
+<p><img alt="comm_process" src="../../../_images/comm_process_en.png" /></p>
+</section>
+</section>
+<section id="cmd-detials">
+<h1><span class="section-number">1.2.1.5. </span>CMD Detials<a class="headerlink" href="#cmd-detials" title="Link to this heading"></a></h1>
+<section id="device-type-query">
+<h2><span class="section-number">1.2.1.5.1. </span>Device Type Query<a class="headerlink" href="#device-type-query" title="Link to this heading"></a></h2>
+<section id="x0000-discovery-by-broadcasting">
+<h3><span class="section-number">1.2.1.5.1.1. </span>0x0000 Discovery By Broadcasting<a class="headerlink" href="#x0000-discovery-by-broadcasting" title="Link to this heading"></a></h3>
+<p>Request</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CMD</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset(byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>NULL</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>ACK</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ACK</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset(byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>ret_code</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Return code <br>(For details, see <a class="reference internal" href="#5-Return-Code-Description"><span class="xref myst">5 Return Code Description</span></a> )</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>dev_type</p></td>
+<td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>LiDAR type</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>serial_number</p></td>
+<td><p>2</p></td>
+<td><p>uint8_t[16]</p></td>
+<td><p>LiDAR SN</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>lidar_ip</p></td>
+<td><p>18</p></td>
+<td><p>uint8_t[4]</p></td>
+<td><p>LiDAR IP address<br/> E.g: AA.BB.CC.DD<br/> lidar_ip[0] = AA<br/> lidar_ip[1] = BB<br/> lidar_ip[2] = CC<br/> lidar_ip[3] = DD</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>cmd_port</p></td>
+<td><p>22</p></td>
+<td><p>uint16_t</p></td>
+<td><p>LiDAR command port</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="lidar-information">
+<h2><span class="section-number">1.2.1.5.2. </span>LiDAR Information<a class="headerlink" href="#lidar-information" title="Link to this heading"></a></h2>
+<section id="x0100-parameter-configuration">
+<h3><span class="section-number">1.2.1.5.2.1. </span>0x0100 Parameter Configuration<a class="headerlink" href="#x0100-parameter-configuration" title="Link to this heading"></a></h3>
+<p>Request</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CMD</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset(byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>key_num</p></td>
+<td><p>0</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Number of key in <code class="docutils literal notranslate"><span class="pre">key_value_list</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>rsvd</p></td>
+<td><p>2</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Reserved</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>key_value_list</p></td>
+<td><p>4</p></td>
+<td><p>key_value_list[N]</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Key</span></code> list <br />For convenience of expansion, multiple pieces of information are placed in a variable-length <code class="docutils literal notranslate"><span class="pre">key_value_list</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Format of each parameter in <code class="docutils literal notranslate"><span class="pre">key_value_list</span></code> is as follows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Data Field</p></th>
+<th class="head"><p>Offset(byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>key</p></td>
+<td><p>0</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Key number, see table below</p></td>
+</tr>
+<tr class="row-odd"><td><p>length</p></td>
+<td><p>2</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Length of value to the key</p></td>
+</tr>
+<tr class="row-even"><td><p>value</p></td>
+<td><p>4</p></td>
+<td><p>–</p></td>
+<td><p>Value content to the key</p></td>
+</tr>
+</tbody>
+</table>
+<p>ACK</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ACK</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset(byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>ret_code</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Return code <br>(For details, see <a class="reference internal" href="#5-Return-Code-Description"><span class="xref myst">5 Return Code Description</span></a> )</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>error_key</p></td>
+<td><p>1</p></td>
+<td><p>uint16_t</p></td>
+<td><p>If the <code class="docutils literal notranslate"><span class="pre">ret_code</span></code> is not <code class="docutils literal notranslate"><span class="pre">LVX_RET_SUCCESS</span></code>, the <code class="docutils literal notranslate"><span class="pre">error_key</span></code> shows which key is error</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="x0101-parameter-inquire">
+<h3><span class="section-number">1.2.1.5.2.2. </span>0x0101 Parameter Inquire<a class="headerlink" href="#x0101-parameter-inquire" title="Link to this heading"></a></h3>
+<p>Request</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CMD</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset(byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>key_num</p></td>
+<td><p>0</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Number of key in <code class="docutils literal notranslate"><span class="pre">key_list</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>rsvd</p></td>
+<td><p>2</p></td>
+<td><p>uint16_t</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>key_list</p></td>
+<td><p>4</p></td>
+<td><p>–</p></td>
+<td><p>Key list</p></td>
+</tr>
+</tbody>
+</table>
+<p>The key type in the <code class="docutils literal notranslate"><span class="pre">key_list</span></code>:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Data</p></th>
+<th class="head"><p>Offset(byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>key</p></td>
+<td><p>0</p></td>
+<td><p>uint16_t</p></td>
+<td><p>key number</p></td>
+</tr>
+</tbody>
+</table>
+<p>ACK</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ACK</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset(byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>ret_code</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Return Code<br/>(For details, see<a class="reference internal" href="#5-Return-Code-Description"><span class="xref myst">5 Return Code Description</span></a> )</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>key_num</p></td>
+<td><p>1</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Number of key in <code class="docutils literal notranslate"><span class="pre">key_value_list</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>key_value_list</p></td>
+<td><p>3</p></td>
+<td><p>–</p></td>
+<td><p>Value of key</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="x0102-lidar-information-push">
+<h3><span class="section-number">1.2.1.5.2.3. </span>0x0102 LiDAR Information Push<a class="headerlink" href="#x0102-lidar-information-push" title="Link to this heading"></a></h3>
+<p>LiDAR push Actively</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CMD</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset(byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>key_num</p></td>
+<td><p>0</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Number of key in <code class="docutils literal notranslate"><span class="pre">key_value_list</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>rsvd</p></td>
+<td><p>2</p></td>
+<td><p>uint16_t</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>key_value_list</p></td>
+<td><p>4</p></td>
+<td><p>–</p></td>
+<td><p>Value of key</p></td>
+</tr>
+</tbody>
+</table>
+<p>Format of the <code class="docutils literal notranslate"><span class="pre">key_value_list</span></code> :</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Data Field</p></th>
+<th class="head"><p>Offset(byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>key</p></td>
+<td><p>0</p></td>
+<td><p>uint16_t</p></td>
+<td><p>key number, see table below</p></td>
+</tr>
+<tr class="row-odd"><td><p>length</p></td>
+<td><p>2</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Length of value to the key</p></td>
+</tr>
+<tr class="row-even"><td><p>value</p></td>
+<td><p>4</p></td>
+<td><p>–</p></td>
+<td><p>Value content to the key</p></td>
+</tr>
+</tbody>
+</table>
+<p>Specific meanings to <code class="docutils literal notranslate"><span class="pre">key_value_list</span></code> are as follows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Number(key)</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Support Parameter Information Configuration Command(cmd_id=0x0100)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0x0000</p></td>
+<td><p>pcl_data_type</p></td>
+<td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Type of point cloud data, For details, see[Data Types](2.3 Data Types) <br/>0x01: Cartesian coordinate(32bits)<br/>0x02: Cartesian coordinate(16bits)<br/>0x03: Spherical coordinate</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x0001</p></td>
+<td><p>pattern_mode</p></td>
+<td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Pattern mode <br/>0x00: Non-repetitive scan<br/>0x01: Repetitive scan(Not Support Now)<br/>0x02: Low frame rate Repetitive scan(Not Support Now)<br/>Note:  Repetitive scan and Low frame rate Repetitive scan are not supported now, it is invalid after setting, please pay attention continuous firmware version update;</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>0x0004</p></td>
+<td><p>lidar_ipcfg</p></td>
+<td><p>12</p></td>
+<td><p>uint8_t[12]</p></td>
+<td><p>LiDAR IP address configuration<br />LiDAR IP address: AA.BB.CC.DD<br/>    data[0]: AA<br/>    data[1]: BB<br/>    data[2]: CC<br/>    data[3]: DD<br/>IPV4 subnet mask<br/>    data[4-7]<br/>IPV4 gateway<br/>    data[8-11]</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x0005</p></td>
+<td><p>state_info_host_ipcfg</p></td>
+<td><p>8</p></td>
+<td><p>uint8_t[8]</p></td>
+<td><p>IP address configuration for pushing LiDAR status information<br />data[0-3]: Destination address: AA.BB.CC.DD<br/>data[4-5]: Destination port<br/>data[6-7]: Source port<br/></p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>0x0006</p></td>
+<td><p>pointcloud_host_ipcfg</p></td>
+<td><p>8</p></td>
+<td><p>uint8_t[8]</p></td>
+<td><p>IP address configuration for pushing LiDAR point cloud data<br />data[0-3]: Destination address: AA.BB.CC.DD<br/>data[4-5]: Destination port<br/>data[6-7]: Source port<br/></p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x0007</p></td>
+<td><p>imu_host_ipcfg</p></td>
+<td><p>8</p></td>
+<td><p>uint8_t[8]</p></td>
+<td><p>IP address configuration for pushing LiDAR IMU data<br />data[0-3]: Destination address: AA.BB.CC.DD<br/>data[4-5]: Destination port<br/>data[6-7]: Source port<br/></p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>0x0012</p></td>
+<td><p>install_attitude</p></td>
+<td><p>24</p></td>
+<td><p></p></td>
+<td><p>Installation location of LiDAR on user device.<br />Assigned by user, this information is carried in command and point cloud data, not processed by LiDAR.<br />Format<br />{<br />    float roll_deg;<br />    float pitch_deg;<br />    float yaw_deg;<br />    int x_mm;<br />    int y_mm;<br />    int z_mm;<br />}</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x0015</p></td>
+<td><p>fov_cfg0</p></td>
+<td><p>20</p></td>
+<td><p></p></td>
+<td><p>FOV configuration, if you do not need to use all the FOV, you can delineate an area (angle range) on the FOV sphere, the lidar only samples in this area, other areas do not work, you can configure two such areas independently, except for the configuration In addition to this parameter, the configuration needs to be enabled through fov_cfg_en; this is the configuration of the first working area, and its format is as follows:<br />struct{<br />    int32_t yaw_start; //Start angle of yaw, range is [0°-360°)<br />    int32_t yaw_stop; //End angle of yaw, range is [0°-360°)<br />    int32_t pitch_start; //Start angle of pitch, range is(-10°-60°)<br />    int32_t pitch_stop; //End angle of pitch, range is (-10°-60°) <br />    uint32_t rsvd;  //Reserved<br />};<br/>Note: <br />1. In addition to this configuration, the actual light-emitting area also needs to consider the actual FOV limit range of the device;<br />2. In order to avoid the time synchronization problem, the points outside the FOV will still be in the point cloud package, the detection distance is 0, and the reflectivity is 60;</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>0x0016</p></td>
+<td><p>fov_cfg1</p></td>
+<td><p>20</p></td>
+<td><p></p></td>
+<td><p>Same as fov_cfg0, this is the configuration of the second working area</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x0017</p></td>
+<td><p>fov_cfg_en</p></td>
+<td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Dividing the enable of different regions by bit<br/>Bit 0: 1 means fov_cfg0 is valid, 0 means invalid<br/>Bit 1: 1 means fov_cfg1 is valid, 0 means invalid</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>0x0018</p></td>
+<td><p>detect_mode</p></td>
+<td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Detect mode<br />0x00: Normal<br />0x01: Sensitive<br />Note: Sensitive detection mode enhances detection ability of objects with low reflectivity, and has better detection results for extremely dark or bright surfaces, but may slightly increase noise rate at the same time.</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x0019</p></td>
+<td><p>func_io_cfg</p></td>
+<td><p>4</p></td>
+<td><p>uint8_t[4]</p></td>
+<td><p>Function IO configuration. Bytes 0-3 represent functions of IN0, NI1, OUT0, and OUT1 pins respectively, corresponding Mid-360 M12 pin numbers are 8, 10, 12, and 11.<br />IN0: Default value is 0, which means it is used to connect to PPS input, other values are invalid<br />IN1: Default value is 0, which means it is used to connect to GPS input, other values are invalid<br />OUT0: Default value is 0, which means no output (external pull-up resistor), a value of 1 means following the IN0 signal, a value of 2 means the safety zone function outputs 0, and other values are invalid.<br />OUT1: Default value is 0, which means no output (external pull-up resistor), a value of 1 means following the IN1 signal, a value of 2 means the safety zone function outputs 1, and other values are invalid</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>0x001A</p></td>
+<td><p>work_tgt_mode</p></td>
+<td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>LiDAR target working mode, For details, see<a class="reference internal" href="#1.2-LiDAR-Working-Status"><span class="xref myst">1.2 LiDAR Working Status</span></a></p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x001C</p></td>
+<td><p>imu_data_en</p></td>
+<td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>0x00: Disable IMU data push <br/>0x01: Enable IMU data push</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>0x8000</p></td>
+<td><p>sn</p></td>
+<td><p>16</p></td>
+<td><p>uint8_t[16]</p></td>
+<td><p>String type(Use ‘\0’ padding for less than 16 bits)<br/>LiDAR SN(Use ‘\0’ padding for less than 16 bits)</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x8001</p></td>
+<td><p>product_info</p></td>
+<td><p>64</p></td>
+<td><p>char[64]</p></td>
+<td><p>String type(Use ‘\0’ padding for less than 32 bits)<br/>LiDAR type + LiDAR production date<br/>Example: “Mid-360 2021/12/01”</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>0x8002</p></td>
+<td><p>version_app</p></td>
+<td><p>4</p></td>
+<td><p>uint8_t[4]</p></td>
+<td><p>App firmware version number: aa.bb.cc.dd<br/>version_info[0]: aa<br/>version_info[1]: bb<br/>version_info[2]: cc<br/>version_info[3]: dd</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x8003</p></td>
+<td><p>version_loader</p></td>
+<td><p>4</p></td>
+<td><p>uint8_t[4]</p></td>
+<td><p>Loader firmware version number</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>0x8004</p></td>
+<td><p>version_hardware</p></td>
+<td><p>4</p></td>
+<td><p>uint8_t[4]</p></td>
+<td><p>Hardware version number</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x8005</p></td>
+<td><p>mac</p></td>
+<td><p>6</p></td>
+<td><p>uint8_t[6]</p></td>
+<td><p>LiDAR MAC address: aa:bb:cc:dd:ee:ff<br/>data[0]: aa<br/>data[1]: bb<br/>data[2]: cc<br/>data[3]: dd<br/>data[4]: ee<br/>data[5]: ff</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>0x8006</p></td>
+<td><p>cur_work_state</p></td>
+<td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Current working state of LiDAR</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x8007</p></td>
+<td><p>core_temp</p></td>
+<td><p>4</p></td>
+<td><p>int32_t</p></td>
+<td><p>Core temperature(Unit: 0.01℃)</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>0x8008</p></td>
+<td><p>powerup_cnt</p></td>
+<td><p>4</p></td>
+<td><p>uint32_t</p></td>
+<td><p>Count of LiDAR powerup</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x8009</p></td>
+<td><p>local_time_now</p></td>
+<td><p>8</p></td>
+<td><p>uint64_t</p></td>
+<td><p>Local time of device</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>0x800A</p></td>
+<td><p>last_sync_time</p></td>
+<td><p>8</p></td>
+<td><p>uint64_t</p></td>
+<td><p>Master time of last synchronization: <br />If PTP synchronized: this time is t1 time carried in follow_up message<br />If GPS synchronized: this time is PPS rising edge time carried in synchronization command</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x800B</p></td>
+<td><p>time_offset</p></td>
+<td><p>8</p></td>
+<td><p>int64_t</p></td>
+<td><p>Time offset of current local time from synchronization source, unit: ns: <br />If local time of device is t0 and source time is t1, then<br /><code class="docutils literal notranslate"><span class="pre">time_offset</span> <span class="pre">=</span> <span class="pre">t0</span> <span class="pre">-</span> <span class="pre">t1</span></code></p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>0x800C</p></td>
+<td><p>time_sync_type</p></td>
+<td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Type of time synchronization<br />0: No time synchronization<br />1: PTP time synchronization(IEEE 1588v2.0)<br />2: gps time synchronization<br /></p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x800E</p></td>
+<td><p>lidar_diag_status</p></td>
+<td><p>2</p></td>
+<td><p>uint16_t</p></td>
+<td><p>LiDAR diag status code <br/>Level of module status abnormality: <br/>0: normal <br/>1: warning<br/>2: error<br/>3: safety_err<br/>struct diag_status{<br/>bit0-3:  system module(Related to software and hardware of main controller)<br/>bit4-7: Scan module(Related to optical path control and angle detection)<br/>bit8-11: Ranging module(Related to control of transmit/receive, peripheral circuits, processing of original signals)<br/>bit12-15: Communication module(Related to software and hardware of communication, time synchronization)<br/>}<br/></p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>0x8010</p></td>
+<td><p>FW_TYPE</p></td>
+<td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Firmware type: <br/>0: loader<br />1: application_image</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x8011</p></td>
+<td><p>hms_code</p></td>
+<td><p>1</p></td>
+<td><p>uint32_t[8]</p></td>
+<td><p>Diagnostic Trouble Code, Each non-0 value represents a piece of diagnostic information. When the radar does not work normally, the cause of the problem can be confirmed through the diagnostic code</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="id1">
+<h2><span class="section-number">1.2.1.5.3. </span>Control Command<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<section id="x0200-reboot-device">
+<h3><span class="section-number">1.2.1.5.3.1. </span>0x0200 Reboot Device<a class="headerlink" href="#x0200-reboot-device" title="Link to this heading"></a></h3>
+<p>Request</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CMD</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>timeout</p></td>
+<td><p>0</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Reboot device delay time: ms</p></td>
+</tr>
+</tbody>
+</table>
+<p>ACK</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ACK</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>ret_code</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Return code: <br/>(For details, see <a class="reference internal" href="#5-Return-Code-Description"><span class="xref myst">5 Return Code Description</span></a> )</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="x0201-restore-factory-settings">
+<h3><span class="section-number">1.2.1.5.3.2. </span>0x0201 Restore Factory Settings<a class="headerlink" href="#x0201-restore-factory-settings" title="Link to this heading"></a></h3>
+<p>After this command is issued, the LiDAR will be restored to the factory settings. After the reply is successful, the LiDAR will reboot immediately.</p>
+<p>Request</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CMD</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>SN</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t[16]</p></td>
+<td><p>Reserved</p></td>
+</tr>
+</tbody>
+</table>
+<p>ACK</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ACK</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>ret_code</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Return code: <br/>(For details, see <a class="reference internal" href="#5-Return-Code-Description"><span class="xref myst">5 Return Code Description</span></a> )</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="x0202-set-gps-timestamp">
+<h3><span class="section-number">1.2.1.5.3.3. </span>0x0202 Set GPS Timestamp<a class="headerlink" href="#x0202-set-gps-timestamp" title="Link to this heading"></a></h3>
+<p>Request</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CMD</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>type</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Timestamp format<br/>        0-1: Reserved<br />        2: GPS time synchronization<br/></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>time_set</p></td>
+<td><p>1</p></td>
+<td><p>uint64_t</p></td>
+<td><p>If GPS synchronized, this field should be the time of the last rising edge of the PPS signal, the type is uint64_t, unit: ns</p></td>
+</tr>
+</tbody>
+</table>
+<p>ACK</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ACK</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>ret_code</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Return code: <br/>(For details, see <a class="reference internal" href="#5-Return-Code-Description"><span class="xref myst">5 Return Code Description</span></a> )</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="log-command">
+<h2><span class="section-number">1.2.1.5.4. </span>Log Command<a class="headerlink" href="#log-command" title="Link to this heading"></a></h2>
+<section id="x0300-log-file-push">
+<h3><span class="section-number">1.2.1.5.4.1. </span>0x0300 Log file push<a class="headerlink" href="#x0300-log-file-push" title="Link to this heading"></a></h3>
+<p>Request</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CMD</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>log_type</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Log type: <br/>0 : real time log<br/> 3 : flash log</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>file_index</p></td>
+<td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>File index</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>file_num</p></td>
+<td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>This field is valid only log_type is 3，it means the number of flash log</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>flag</p></td>
+<td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>bit 0: <br/>1 means need ack<br/>bit 1: <br/>1 means create file<br/>bit 2: <br/>1 means finish file<br/></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>timestamp</p></td>
+<td><p>4</p></td>
+<td><p>uint32_t</p></td>
+<td><p>unix time stamp，this count starts at the Unix Epoch on January 1st, 1970 at UTC <br/>log file naming rules: <br/>log_&lt;log_type_name&gt;_&lt;file_index&gt;_&lt;system_time&gt;.dat<br/>example: log_fully_log_1_20220613203140.dat</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>rsvd</p></td>
+<td><p>8</p></td>
+<td><p>uint16_t</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>trans_index</p></td>
+<td><p>10</p></td>
+<td><p>uint32_t</p></td>
+<td><p>send index</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>log_data_len</p></td>
+<td><p>14</p></td>
+<td><p>uint16_t</p></td>
+<td><p>log content length</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>log_data</p></td>
+<td><p>16</p></td>
+<td><p>–</p></td>
+<td><p>log content</p></td>
+</tr>
+</tbody>
+</table>
+<p>ACK</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ACK</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>ret_code</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Return code: <br/>(For details, see <a class="reference internal" href="#5-Return-Code-Description"><span class="xref myst">5 Return Code Description</span></a> )</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>log_type</p></td>
+<td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>file_index</p></td>
+<td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>trans_index</p></td>
+<td><p>3</p></td>
+<td><p>uint32_t</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="x0301-log-collection-configuration">
+<h3><span class="section-number">1.2.1.5.4.2. </span>0x0301 Log collection configuration<a class="headerlink" href="#x0301-log-collection-configuration" title="Link to this heading"></a></h3>
+<p>Request</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CMD</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>log_type</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Log type: <br/>0 : real time log<br/> 3 : flash log</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>enable</p></td>
+<td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>0 : disable<br/>1 :  enable</p></td>
+</tr>
+</tbody>
+</table>
+<p>ACK</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ACK</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>ret_code</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Return code: <br/>(For details, see <a class="reference internal" href="#5-Return-Code-Description"><span class="xref myst">5 Return Code Description</span></a> )</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="x0302-log-system-time-synchronization">
+<h3><span class="section-number">1.2.1.5.4.3. </span>0x0302 Log system time synchronization<a class="headerlink" href="#x0302-log-system-time-synchronization" title="Link to this heading"></a></h3>
+<p>Request</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CMD</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>timestamp</p></td>
+<td><p>0</p></td>
+<td><p>uint32_t</p></td>
+<td><p>unix time stamp，this count starts at the Unix Epoch on January 1st, 1970 at UTC</p></td>
+</tr>
+</tbody>
+</table>
+<p>ACK</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ACK</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>ret_code</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Return code: <br/>(For details, see <a class="reference internal" href="#5-Return-Code-Description"><span class="xref myst">5 Return Code Description</span></a> )</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="x0303-debug-raw-data-collection-configuration">
+<h3><span class="section-number">1.2.1.5.4.4. </span>0x0303 Debug raw data collection configuration<a class="headerlink" href="#x0303-debug-raw-data-collection-configuration" title="Link to this heading"></a></h3>
+<p>Request</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CMD</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>enable</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>0：disable<br/>1 :  enable</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>host_ip</p></td>
+<td><p>1</p></td>
+<td><p>uint8_t[4]</p></td>
+<td><p>Debug raw data destination IP address：AA.BB.CC.DD<br/>    data[0]: AA<br/>    data[1]: BB<br/>    data[2]: CC<br/>    data[3]: DD</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>host_port</p></td>
+<td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Debug raw data destination port</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>reserved</p></td>
+<td><p>7</p></td>
+<td><p>uint16_t</p></td>
+<td><p>reserved</p></td>
+</tr>
+</tbody>
+</table>
+<p>ACK</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ACK</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>ret_code</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Return code: <br/>(For details, see <a class="reference internal" href="#5-Return-Code-Description"><span class="xref myst">5 Return Code Description</span></a> )</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="general-upgrade">
+<h2><span class="section-number">1.2.1.5.5. </span>General Upgrade<a class="headerlink" href="#general-upgrade" title="Link to this heading"></a></h2>
+<section id="x0400-request-to-start-upgrade">
+<h3><span class="section-number">1.2.1.5.5.1. </span>0x0400 Request to Start Upgrade<a class="headerlink" href="#x0400-request-to-start-upgrade" title="Link to this heading"></a></h3>
+<p>Request</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CMD</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>firmware_type</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Firmware type: <br>0: Package firmware<br>1: LiDAR firmware<br>2: Other firmware</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>encrypt_type</p></td>
+<td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Encrypt type: <br>0: None encrypt<br>1: AES128<br>2: AES256<br>3: DES<br>4: 3DES</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>firmware_length</p></td>
+<td><p>2</p></td>
+<td><p>uint32_t</p></td>
+<td><p>Firmware length</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>dev_type</p></td>
+<td><p>6</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Device type<br>9: 9：Mid360</p></td>
+</tr>
+</tbody>
+</table>
+<p>ACK</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ACK</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>ret_code</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Return code: <br>(For details, see <a class="reference internal" href="#5-Return-Code-Description"><span class="xref myst">5 Return Code Description</span></a> )</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="x0401-firmware-data-transmit">
+<h3><span class="section-number">1.2.1.5.5.2. </span>0x0401 Firmware Data Transmit<a class="headerlink" href="#x0401-firmware-data-transmit" title="Link to this heading"></a></h3>
+<p>Request</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CMD</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>firmware_offset</p></td>
+<td><p>0</p></td>
+<td><p>uint32_t</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>current_length</p></td>
+<td><p>4</p></td>
+<td><p>uint32_t</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>encrypt_type</p></td>
+<td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>rsvd</p></td>
+<td><p>9</p></td>
+<td><p>uint8_t[3]</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>data</p></td>
+<td><p>12</p></td>
+<td><p>uint8_t[n]</p></td>
+<td><p>firmware data</p></td>
+</tr>
+</tbody>
+</table>
+<p>ACK</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ACK</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>ret_code</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Return code: <br>(For details, see <a class="reference internal" href="#5-Return-Code-Description"><span class="xref myst">5 Return Code Description</span></a> )</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>current_offset</p></td>
+<td><p>1</p></td>
+<td><p>uint32_t</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>received_length</p></td>
+<td><p>5</p></td>
+<td><p>uint32_t</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="x0402-firmware-transmit-complete">
+<h3><span class="section-number">1.2.1.5.5.3. </span>0x0402 Firmware Transmit Complete<a class="headerlink" href="#x0402-firmware-transmit-complete" title="Link to this heading"></a></h3>
+<p>Request</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CMD</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>checksum_type</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>checksum_length</p></td>
+<td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>checksum_data</p></td>
+<td><p>2</p></td>
+<td><p>uint8_t[n]</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>ACK</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ACK</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>ret_code</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Return code: <br>(For details, see <a class="reference internal" href="#5-Return-Code-Description"><span class="xref myst">5 Return Code Description</span></a> )</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="x0403-get-firmware-upgrade-state">
+<h3><span class="section-number">1.2.1.5.5.4. </span>0x0403 Get Firmware Upgrade State<a class="headerlink" href="#x0403-get-firmware-upgrade-state" title="Link to this heading"></a></h3>
+<p>Request</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CMD</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>NULL</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>ACK</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ACK</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Offset (byte)</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>ret_code</p></td>
+<td><p>0</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Return code: <br>(For details, see <a class="reference internal" href="#5-Return-Code-Description"><span class="xref myst">5 Return Code Description</span></a> )</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>upgrade_progress</p></td>
+<td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Upgrade progress: <br>0 - 100</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="return-code-description">
+<h1><span class="section-number">1.2.1.6. </span>Return Code Description<a class="headerlink" href="#return-code-description" title="Link to this heading"></a></h1>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Return Code</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LVX_RET_SUCCESS</p></td>
+<td><p>0x00</p></td>
+<td><p>Execution succeed</p></td>
+</tr>
+<tr class="row-odd"><td><p>LVX_RET_FAILURE</p></td>
+<td><p>0x01</p></td>
+<td><p>Execution failed</p></td>
+</tr>
+<tr class="row-even"><td><p>LVX_RET_NOT_PERMIT_NOW</p></td>
+<td><p>0x02</p></td>
+<td><p>Current state does not support</p></td>
+</tr>
+<tr class="row-odd"><td><p>LVX_RET_OUT_OF_RANGE</p></td>
+<td><p>0x03</p></td>
+<td><p>Setting value out of range</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>LVX_RET_PARAM_NOTSUPPORT</p></td>
+<td><p>0x20</p></td>
+<td><p>The parameter is not supported</p></td>
+</tr>
+<tr class="row-even"><td><p>LVX_RET_PARAM_REBOOT_EFFECT</p></td>
+<td><p>0x21</p></td>
+<td><p>Parameters need to reboot to take effect</p></td>
+</tr>
+<tr class="row-odd"><td><p>LVX_RET_PARAM_RD_ONLY</p></td>
+<td><p>0x22</p></td>
+<td><p>The parameter is read-only and cannot be written</p></td>
+</tr>
+<tr class="row-even"><td><p>LVX_RET_PARAM_INVALID_LEN</p></td>
+<td><p>0x23</p></td>
+<td><p>The request parameter length is wrong, or the ack packet exceeds the maximum length</p></td>
+</tr>
+<tr class="row-odd"><td><p>LVX_RET_PARAM_KEY_NUM_ERR</p></td>
+<td><p>0x24</p></td>
+<td><p>Parameter <code class="docutils literal notranslate"><span class="pre">key_</span> <span class="pre">num</span></code> and <code class="docutils literal notranslate"><span class="pre">key_</span> <span class="pre">list</span></code> mismatch</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>LVX_RET_UPGRADE_PUB_KEY_ERROR</p></td>
+<td><p>0x30</p></td>
+<td><p>Public key signature verification error</p></td>
+</tr>
+<tr class="row-even"><td><p>LVX_RET_UPGRADE_DIGEST_ERROR</p></td>
+<td><p>0x31</p></td>
+<td><p>Digest check error</p></td>
+</tr>
+<tr class="row-odd"><td><p>LVX_RET_UPGRADE_FW_TYPE_ERROR</p></td>
+<td><p>0x32</p></td>
+<td><p>Firmware type mismatch</p></td>
+</tr>
+<tr class="row-even"><td><p>LVX_RET_UPGRADE_FW_OUT_OF_RANGE</p></td>
+<td><p>0x33</p></td>
+<td><p>Firmware length out of range</p></td>
+</tr>
+<tr class="row-odd"><td><p>LVX_RET_UPGRADE_FW_ERASING</p></td>
+<td><p>0x34</p></td>
+<td><p>Firmware erasing</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="crc-algorithm">
+<h1><span class="section-number">1.2.1.7. </span>CRC Algorithm<a class="headerlink" href="#crc-algorithm" title="Link to this heading"></a></h1>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>CRC Name</p></th>
+<th class="head text-left"><p>Polynomial Formula</p></th>
+<th class="head text-left"><p>Width</p></th>
+<th class="head text-left"><p>Polynomial</p></th>
+<th class="head text-left"><p>Initial Value</p></th>
+<th class="head text-left"><p>Result XOR value</p></th>
+<th class="head text-left"><p>Input Reverse</p></th>
+<th class="head text-left"><p>Output Reverse</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>CRC-16/CCITT-FALSE</p></td>
+<td class="text-left"><p>x^16^ + x^12^ + x^5^ + 1</p></td>
+<td class="text-left"><p>16</p></td>
+<td class="text-left"><p>0x1021</p></td>
+<td class="text-left"><p>0xFFFF</p></td>
+<td class="text-left"><p>0x0000</p></td>
+<td class="text-left"><p>false</p></td>
+<td class="text-left"><p>false</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>CRC-32</p></td>
+<td class="text-left"><p>x^32^ + x^26^ + x^23^ +    x^22^ + x^16^ + x^12^ +    x^11^ + x^10^ + x^8^ + x^7^ + x^5^ + x^4^ + x^2^ + x + 1</p></td>
+<td class="text-left"><p>32</p></td>
+<td class="text-left"><p>0x04C11DB7</p></td>
+<td class="text-left"><p>0xFFFFFFFF</p></td>
+<td class="text-left"><p>0xFFFFFFFF</p></td>
+<td class="text-left"><p>true</p></td>
+<td class="text-left"><p>true</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mid360.html" class="btn btn-neutral float-left" title="1.2. Mid-360" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hms_code_mid360.html" class="btn btn-neutral float-right" title="1.2.3.1. Composition format" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Livox.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

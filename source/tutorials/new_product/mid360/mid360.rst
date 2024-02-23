@@ -33,3 +33,9 @@ HMS Diagnostic Code Introduction
 .. toctree::
 
     hms_code_mid360.rst
+
+Introduction to shock absorption and cooling accessories
+------------------------
+.. toctree::
+
+    cushioning_radiator.md

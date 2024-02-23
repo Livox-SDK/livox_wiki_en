@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.1. Single lidar data acquisition &mdash; Livox wiki 0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.2. Multi-lidars data collection (using Livox Hub)" href="multiple_lidars_capture.html" />
+    <link rel="prev" title="1.3.3. Time Synchronization Instructions" href="../new_product/common/time_sync.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Livox wiki
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Livox Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/production.html">1. Product</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/livox_scanning_pattern.html">2. Introduction to Livox Scanning Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/Point_Cloud_Characteristics_and_Coordinate_System%20.html">3. Livox Point Cloud and Coordinate System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/cases.html">4. Showcase</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">1. New Product</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html#other-product">2. Other Product</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.1. Single lidar data acquisition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#use-livox-viewer-to-collect-data">2.1.1. Use Livox Viewer to Collect Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collection-under-ros">2.1.2. Collection Under ROS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="multiple_lidars_capture.html">2.2. Multi-lidars data collection (using Livox Hub)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format_conversion.html">2.3. Data format and conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensor_calibration.html">2.4. Lidar Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="livox_SDK.html">2.5. Livox SDK</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer profile</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data_summary/Livox_data_summary.html">1. Summary of Official Open Source Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_summary/third_part_summary.html">2. Summary of Unofficial Open Source Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_summary/dataset.html">3. Dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Livox wiki</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">1. </span>New Product</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2.1. </span>Single lidar data acquisition</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/tutorials/other_product/single_lidar_capture.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="single-lidar-data-acquisition">
+<h1><span class="section-number">2.1. </span>Single lidar data acquisition<a class="headerlink" href="#single-lidar-data-acquisition" title="Link to this heading"></a></h1>
+<section id="use-livox-viewer-to-collect-data">
+<h2><span class="section-number">2.1.1. </span>Use Livox Viewer to Collect Data<a class="headerlink" href="#use-livox-viewer-to-collect-data" title="Link to this heading"></a></h2>
+<p>Take Livox Mid-40 as an example:</p>
+<p><strong>dependencies</strong>：Ubuntu 16.04 or win10, Livox_Viewer(see driver for this part of the software installation <span class="xref std std-doc">Driver</span>)</p>
+<p><strong>Hardware part</strong>：Livox-Mid 40, power adapter socket 2.0 or connection box, Ethernet cable, PC.</p>
+<p><strong>Connection</strong>：The physical connection is shown in the figure below</p>
+<img alt="tutorials/image/one_lidar_connect.png" src="tutorials/image/one_lidar_connect.png" />
+<p>If you have any questions about the connection and IP configuration, please refer to the “Connection” section of the Livox Mid user manual on the Livox official website, and the link of the
+<a class="reference external" href="https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/update/Livox%20Mid%20Series%20User%20Manual%20(EN).pdf">Livox Mid user manual</a></p>
+<p>Acquisition: After completing the hardware connection, open Livox Viewer, the download address is as follows:</p>
+<p><a class="reference external" href="https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/update/Livox%20Viewer%200.8.0.7z">Livox Viewer 0.8.0 for Windows</a></p>
+<p><a class="reference external" href="https://www.livoxtech.com/3296f540ecf5458a8829e01cf429798e/downloads/Livox%20Viewer/Livox_Viewr_For_Linux_Ubuntu16.04_x64_0.7.0.tar.gz">Livox Viewer 0.7.0 For Linux Ubuntu16.04_x64</a></p>
+<p>After starting the terminal, go to the root directory of the unzipped folder and run the command ‘./livox viewer.sh’ to start</p>
+<p>If the Lidar is correctly connected and the IP configuration is completed, the Livox Viewer interface is now shown as follows, and the model and 15-digit broadcast code of the connected Livox Lidar are displayed on the left.</p>
+<img alt="tutorials/image/start_Viewer_and_link_Horizon.png" src="tutorials/image/start_Viewer_and_link_Horizon.png" />
+<p>Click the button to start Lidar, and then click the play button to display the point cloud image collected by Lidar, as shown below:</p>
+<img alt="tutorials/image/capture.png" src="tutorials/image/capture.png" />
+<p>After the acquisition is successful, you can click the record button on the toolbar to record the lvx format file, pause playback or click this button again to end the recording.</p>
+<p>The toolbar contains multiple buttons to set the point cloud color scheme, point style size, frame integration duration and other functions. For details, please refer to the official website Livox Viewer User Manual. The link to Livox
+<a class="reference external" href="https://www.livoxtech.com/3296f540ecf5458a8829e01cf429798e/downloads/Livox%20Viewer/Livox%20Viewer%20User%20Manual.pdf">Livox Viewer User Manual</a></p>
+<p>The default format of Livox Viewer to record and save files is lvx. Select File-&gt;Save as in the menu to save the current point cloud as a csv or las file.</p>
+</section>
+<section id="collection-under-ros">
+<h2><span class="section-number">2.1.2. </span>Collection Under ROS<a class="headerlink" href="#collection-under-ros" title="Link to this heading"></a></h2>
+<p>Take Livox Mid-40 as an example:</p>
+<p><strong>dependencies</strong>：ubuntu 16.04、ROS、Livox-SDK、Livox_ros_driver(see the driver for the detailed process of downloading and installing this part <span class="xref std std-doc">Driver</span>)</p>
+<p><strong>Hardware part</strong>：Livox-Mid 40 × 1, power adapter 2.0 or connection box × 1, Ethernet cable (100M or Gigabit) × 1, PC × 1</p>
+<p><strong>Connection</strong>：The physical connection is shown in the figure below</p>
+<img alt="tutorials/image/one_lidar_connect.png" src="tutorials/image/one_lidar_connect.png" />
+<p>If you have any questions about the connection and IP configuration, please refer to the “Connection” section of the Livox Mid User Manual on the Livox official website.
+<a class="reference external" href="https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/update/Livox%20Mid%20Series%20User%20Manual%20(EN).pdf">Livox Mid Manual</a></p>
+<p><strong>Point Cloud Collection:</strong>：</p>
+<ul class="simple">
+<li><p>Lvx:</p></li>
+</ul>
+<p>First confirm that Livox-SDK has been cloned from Git</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/Livox-SDK/Livox-SDK.git
+</pre></div>
+</div>
+<p>Complete the Lidar hardware and IP configuration part, and open a terminal window under the following file path:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ../Livox_SDK/build/sample/lidar_lvx_file
+</pre></div>
+</div>
+<p>Execute the following command to connect to Lidar and set the duration of the recorded point cloud data to 10s:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./lidar_lvx_sample -c &quot;Lidar&#39;s Broadcast code&quot; -t 10
+</pre></div>
+</div>
+<img alt="tutorials/image/save_lvx_data_by_SDK_01.png" src="tutorials/image/save_lvx_data_by_SDK_01.png" />
+<img alt="tutorials/image/save_lvx_data_by_SDK_02.png" src="tutorials/image/save_lvx_data_by_SDK_02.png" />
+<p>After successful execution, a lvx file can be generated under the current path</p>
+<img alt="tutorials/image/save_lvx_data_by_SDK_03.png" src="tutorials/image/save_lvx_data_by_SDK_03.png" />
+<ul class="simple">
+<li><p>rosbag:</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since the Horizon integrates IMU, there are two topics when using this method to record Horizon lidar data: point cloud data in CustomMsg format and IMU data in sensor_msgs/Imu format.</p>
+</div>
+<p>1.1. After connecting the lidar, open the terminal to compile and update the current ROS package environment in the workspace where livox_ros_driver is located:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ catkin_make
+
+$ source ./devel/setup.sh
+</pre></div>
+</div>
+<p>2.Use the ROS launch file to load the Livox ROS driver:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch livox_ros_driver livox_lidar_rviz.launch
+</pre></div>
+</div>
+<p>3.After starting rviz and displaying the lidar-screen, use the record command to record data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rosbag record -a
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../new_product/common/time_sync.html" class="btn btn-neutral float-left" title="1.3.3. Time Synchronization Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="multiple_lidars_capture.html" class="btn btn-neutral float-right" title="2.2. Multi-lidars data collection (using Livox Hub)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Livox.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

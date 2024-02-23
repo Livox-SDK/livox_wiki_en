@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3. Livox Point Cloud and Coordinate System &mdash; Livox wiki 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Showcase" href="cases.html" />
+    <link rel="prev" title="2. Introduction to Livox Scanning Features" href="livox_scanning_pattern.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Livox wiki
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Livox Introduction</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="production.html">1. Product</a></li>
+<li class="toctree-l1"><a class="reference internal" href="livox_scanning_pattern.html">2. Introduction to Livox Scanning Features</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Livox Point Cloud and Coordinate System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#point-cloud-properties">3.1. Point Cloud Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#coordinate-system">3.2. Coordinate System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#point-cloud-data">3.3. Point Cloud Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cases.html">4. Showcase</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">1. New Product</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html#other-product">2. Other Product</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer profile</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../data_summary/Livox_data_summary.html">1. Summary of Official Open Source Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_summary/third_part_summary.html">2. Summary of Unofficial Open Source Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_summary/dataset.html">3. Dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../FAQ.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Livox wiki</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3. </span>Livox Point Cloud and Coordinate System</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/introduction/Point_Cloud_Characteristics_and_Coordinate_System .rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="livox-point-cloud-and-coordinate-system">
+<h1><span class="section-number">3. </span>Livox Point Cloud and Coordinate System<a class="headerlink" href="#livox-point-cloud-and-coordinate-system" title="Link to this heading"></a></h1>
+<section id="point-cloud-properties">
+<h2><span class="section-number">3.1. </span>Point Cloud Properties<a class="headerlink" href="#point-cloud-properties" title="Link to this heading"></a></h2>
+<p><strong>Mid Series</strong></p>
+<p>Livox_LiDAR can accurately perceive the complex surrounding environment and provide detailed point cloud data information. It is suitable for advanced driver assistance systems, unmanned vehicles, robots, helicopters, UAV obstacle avoidance and safety inspections. Let’s take Mid series and Horizon series as examples to introduce the characteristics and parameters of Livox_LiDAR point cloud:</p>
+<p>Livox Mid-40 and Livox Mid-100 have a higher field of view coverage by using non-repetitive scanning technology, and as the integration time increases, the field of view coverage will also increase significantly, capturing more details. The figure below shows the point cloud diagrams of Livox Mid-40 and Mid-100 at different integration times (0.1s, 0.2s, 0.5s and 1s respectively. The point cloud diagrams of each Livox Mid-100 point cloud image can be regarded as three Mid-40.</p>
+<p>The point cloud effect diagram of Livox Mid-40 in different integration time is as follows:</p>
+<img alt="../_images/Mid-40_point_cloud_photo.png" src="../_images/Mid-40_point_cloud_photo.png" />
+<p>The point cloud effect diagram of Livox Mid-100 in different integration time is as follows:</p>
+<img alt="../_images/Mid-100_point_cloud_picture.png" src="../_images/Mid-100_point_cloud_picture.png" />
+<p>The following figure shows the coverage of the field of view of the Livox Mid-40 under different integration times, and the relevant data of several traditional multi-line mechanical lidar on the market. It can be seen from the figure that when the integration time is less than 0.1s, the field of view coverage performance of Livox Mid-40 is equivalent to that of a 32-line product; when the integration time increases, the field of view coverage of Livox Mid-40 significantly improved while the field of view coverage of a 32-line product remained unchanged. When the integration time is 0.5s, the Mid-40 field of view coverage is equivalent to a 64-line product; when the integration time continues to increase to 1.4s, the Mid-40 field of view coverage will be close to 100%, that is, almost all areas in the field of view will be hit by the laser beam.</p>
+<img alt="../_images/Mid-40_FOV_coverage.png" src="../_images/Mid-40_FOV_coverage.png" />
+<p>Mid Series Point Cloud Specifications:</p>
+<img alt="../_images/mid_specifications.png" src="../_images/mid_specifications.png" />
+<p><strong>HORIZON</strong></p>
+<p>The Horizon utilizes Livox’s unique non-repetitive scanning technology and multi-laser and multi-APD DL-Pack technology. This ensures a high-density point cloud which is approximately three times denser than the Livox Mid series within the same period. Over time, the coverage inside the FOV increases significantly and reveals more detailed information of the surroundings.</p>
+<p>Figure below displays the point cloud allocation of the Horizon inside the FOV within 0.1s. In the center of the FOV, the scanning density is denser with the average spacing of lines being 0.2° (most line spacing is from 0.1° to 0.3°), which is much denser than traditional 64-line LiDAR sensors, in which the spacing of lines is 0.3° to 0.6°. The two circular areas on both sides have a lower scanning density, with an average line spacing of 0.4° (most line spacing is between 0.2° to 0.8°), rivaling traditional 64-lines LiDAR sensors within 0.1s</p>
+<img alt="../_images/0.1sHorizon_point_cloud_sanning_picture.png" src="../_images/0.1sHorizon_point_cloud_sanning_picture.png" />
+<p>Figure below displays the typical point cloud patterns of the Horizon.</p>
+<img alt="../_images/Horizon_point_cloud_picture.png" src="../_images/Horizon_point_cloud_picture.png" />
+<p>Figure below displays the FOV coverage of the Horizon compared with other non-Livox LiDAR sensors that use common mechanical scanning methods. The diagram shows that when the integration time is less than 0.1 seconds, the FOV coverage of the Horizon approaches 60%, similar to the 64-line LiDAR sensor. As the integration time increases to 0.5 seconds, the FOV coverage approaches 100%, so almost all areas are illuminated by laser beams.</p>
+<img alt="../_images/Horizon_FOV_change.png" src="../_images/Horizon_FOV_change.png" />
+<p>Horizon Point Cloud Specifications:</p>
+<img alt="../_images/horizon_specification.png" src="../_images/horizon_specification.png" />
+<p><strong>TELE-15</strong></p>
+<p>The Tele-15 utilizes Livox’s unique non-repetitive scanning technology and multi-laser and multi-APD DL-Pack technology. This ensures a high-density point cloud which is approximately five times denser than the Livox Mid-40 within the same period.</p>
+<p>Figure below displays the point cloud data of the Tele-15 inside the FOV within 0.1s. In the center of the FOV, the scanning density is as dense as traditional 300-line LiDAR sensors. In other areas of the FOV, the scanning density is significantly denser than 100-line LiDAR sensors. Within Tele-15’s FOV, the overall scanning density rivals traditional 128-lines LiDAR sensors within 0.1s.</p>
+<img alt="../_images/tele_15_pattern.png" src="../_images/tele_15_pattern.png" />
+<p>According to the definition of Livox coordinate system, the azimuth range is 0°~360°, where -10°~0° is equivalent to 350°~360°.</p>
+<p>Figure below displays the FOV coverage of the Tele-15 compared with other non-Livox LiDAR sensors that use common mechanical scanning methods. The diagram shows that when the integration time is 0.1 seconds, the FOV coverage of the Tele-15 is approximately 99%, higher than the 128-line LiDAR sensor.</p>
+<img alt="../_images/tele_coverage.png" src="../_images/tele_coverage.png" />
+<p>TELE-15 Specifications:</p>
+<img alt="../_images/tele_specification.png" src="../_images/tele_specification.png" />
+</section>
+<section id="coordinate-system">
+<h2><span class="section-number">3.2. </span>Coordinate System<a class="headerlink" href="#coordinate-system" title="Link to this heading"></a></h2>
+<p>In multi-sensor intelligent body navigation, multiple sensors are usually installed for data fusion and calculation. It is necessary to understand that the Cartesian coordinates of Livox lidars are defined as follows:</p>
+<ul class="simple">
+<li><p>Livox Mid-40 coordinate definition:</p></li>
+</ul>
+<img alt="../_images/Livox_Mid-40__coordinate_system.png" src="../_images/Livox_Mid-40__coordinate_system.png" />
+<ul class="simple">
+<li><p>The IMU is built-in in Livox Horizon, the point cloud coordinate system O-XYZ and the IMU coordinate system O-X’Y’Z’ are defined as shown in the figure below:</p></li>
+</ul>
+<img alt="../_images/Livox_Horizon_coordinate_system.png" src="../_images/Livox_Horizon_coordinate_system.png" />
+<ul class="simple">
+<li><p>The IMU is built-in in Livox Tele-15, the point cloud coordinate system O-XYZ and the IMU coordinate system O-X’Y’Z’ are defined as shown in the figure below:</p></li>
+</ul>
+<img alt="../_images/tele_Coordinate_System.png" src="../_images/tele_Coordinate_System.png" />
+<p>Among them, the coordinates of the IMU coordinate origin O’ on the point cloud coordinate system O-XYZ are (-84.7, -42.5, -35.3) (unit: mm)</p>
+</section>
+<section id="point-cloud-data">
+<h2><span class="section-number">3.3. </span>Point Cloud Data<a class="headerlink" href="#point-cloud-data" title="Link to this heading"></a></h2>
+<p>The point cloud data is the sum of all the point clouds detected on the surface of the measured object in the field of view of lidar. Each point cloud contains the following information.</p>
+<ul class="simple">
+<li><p>Target reflectivity:</p></li>
+</ul>
+<p>Expressed from 0 to 255. Among them, 0 to 150 correspond to diffuse scattering objects with reflectivity between 0 and 100%; and 151 to 255 correspond to total reflection objects.</p>
+<ul class="simple">
+<li><p>Coordinate information:</p></li>
+</ul>
+<p>The coordinate information of Livox Horizon can be expressed as rectangular coordinates (x, y, z) or spherical coordinates (r, θ, φ). The corresponding relationship between rectangular coordinates and spherical coordinates is shown in the figure below. If there is no detected object ahead or the detected object exceeds the range (for example, 600m), the point cloud output is (0, 0, 0) in the Cartesian coordinate system; the point cloud output is (0, θ, Φ) in the spherical coordinate system. The relationship between spherical coordinates and rectangular coordinates in point cloud data is as follows:</p>
+<img alt="../_images/coordinate_transform.png" src="../_images/coordinate_transform.png" />
+<ul class="simple">
+<li><p>Tag: Indicates the return type of the laser and if the point detected is a noise. The format of the tag is as shown below</p></li>
+</ul>
+<img alt="../_images/tag.png" src="../_images/tag.png" />
+<p>Each tag is composed of one byte. In this byte, bit7 and bit6 are Group 1, bit5 and bit4 are Group 2,
+bit3 and bit2 are Group 3 while bit1 and bit0 are Group 4.
+Group 2 indicates the return sequence of the sampling point. Featuring a coaxial optical path, the
+Horizon itself will generate a laser return even if there is no detectable object around. This return is
+recorded as return 0. After that, if there is any object within the detectable range, the first laser that
+returns to the Horizon is recorded as return 1, and then return 2, and so on. If the object is too close to
+the Horizon such as 1.5 m away, the first effective return will be merged into return 0, and be recorded
+as return 0.
+Group 3 indicates if the sampling point is a noise based on the intensity of the return. Normally, the
+intensity of the returns of the noises generated due to the interference of atmosphere particles such as
+dust, rain, fog, and snow is quite low. Therefore, the noises are divided into two categories based on
+the intensity of the return received: “01” stands for low intensity of the return, indicating that the samples
+have a high possibility of being noises such as dust; “10” stands for moderate intensity of the return,
+indicating that the samples have a moderate possibility of being noises such as rain and fog. The lower
+the confidence level of the sample is, the lower the possibility that it being a noise is.
+Group 4 indicates if the sampling point is a noise based on its spatial position. Normally, when the
+Horizon LiDAR sensors detect two close objects, there will be some thread-like noises between the two
+objects. The noises are divided into three categories. The lower the confidence level of the noise is, the
+lower the possibility that it being a noise is.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="livox_scanning_pattern.html" class="btn btn-neutral float-left" title="2. Introduction to Livox Scanning Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cases.html" class="btn btn-neutral float-right" title="4. Showcase" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Livox.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

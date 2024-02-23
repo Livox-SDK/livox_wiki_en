@@ -18,6 +18,7 @@
 | 20230904            | v1.4.8      | 1. Add description of log related protocols                  |
 | 20240102            | v1.4.9      | 1. Add upgrade error related abnormal code description<br/>2. Add environment temp related high abnormal code|
 | 20240117            | v1.4.10     | 1. Update description of GPS sync high-level time of the second pulse|
+| 20240222            | v1.4.11     | 1. Add description related to time synchronization slope<br/>2. Add descriptions related to shock absorption and heat dissipation|
 
 # Overview
 
