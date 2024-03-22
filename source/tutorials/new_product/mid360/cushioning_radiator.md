@@ -13,7 +13,7 @@ Users can purchase cooling accessories to meet the needs of working in a 60℃ e
 ![](./images/radiator_build_size3_en.png)
 
 # Vibration reduction accessories
-If it is found that there is a large vibration and noise problem when installed on the user's base, which is more obvious than the vibration and noise of the radar itself, it may be that the resonance amplification effect of the radar and the installation structure has occurred. In addition to adjusting the installation structure mode to avoid resonance amplification, you can also purchase Livox vibration reduction accessories to optimize vibration and noise problems. The vibration reduction structure and installation diagram are shown in the figure below.
+If it is found that there is a large vibration and noise problem when installed on the user's base, which is more obvious than the vibration and noise of the radar itself, it may be that the resonance amplification effect of the radar and the installation structure has occurred. In addition to adjusting the installation structure mode to avoid resonance amplification, you can also make vibration reduction accessories to optimize vibration and noise problems. The vibration reduction structure and installation diagram are shown in the figure below.
 
 ## Vibration reduction accessories installation method
 
