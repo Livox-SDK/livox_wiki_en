@@ -2,6 +2,11 @@
 Mid-360
 =================
 
+.. note::
+    ⚠️1. When connecting the power cable and the function cable, pay attention to their respective voltage ranges and polarities. DO NOT connect any PoE device to the RJ-45 network connector. Incorrect connection can lead to irreversible damage to the LiDAR.
+
+    ⚠️2. Overlapping with other Lidar FOVs should be avoided. If the laser beams are pointed right at each other, irreversible damage may be caused to the Mid-360.
+   
 Communication Protocol
 ------------------------
 
