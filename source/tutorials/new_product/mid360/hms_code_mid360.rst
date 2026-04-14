@@ -56,6 +56,7 @@ abnormal ID         abnormal level     abnormal description                     
 0x0115              fatal              Environment temperature beyond the limit, the device has stopped working      Please check the environment temperature and losing heat measures
 0x0116              fatal              Abnormal external voltage                                                     Please check the external voltage
 0x0117              fatal              Abnormal lidar parameters                                                     Please try to restart the device to restore
+0x0118              fatal              Internal components of the device are damaged                                 The device is not working properly, please contact the maintenance personnel
 0x0201              warning            Scan module is heating                                                        Please wait for the scan module heating
 0x0210-0x0219       error              Scan module is abnormal, the system is trying to recover                      Please wait, if it lasts too long, please try restarting the device to restore
 0x0210-0x0219       fatal              Scan module is abnormal                                                       Please try to restart the device to restore
