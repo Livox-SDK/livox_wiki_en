@@ -22,7 +22,14 @@ Mid-360 is the latest generation of Livox LiDAR for low speed robotics. This new
 
 .. image:: ../image/mid360.jpg
 
-Other product introduction 
+Avia2
+~~~~~~~~~~~~~~~~~~~~~~
+Avia 2,Livox's new ultra-long range LiDAR. Powered by a 1535nm laser,it reaches maximum cutoff range of 1000m and supports switching between large and small FOVs.With amicro laser spot, as well as the built-in rain and fog noise removal algorithm, Avia2 can stably capture high-resolution 3D point clouds in complex conditions, revealing rich details. For more information:
+`Avia2 <https://www.livoxtech.com/avia-2>`_
+
+.. image:: ../image/avia2.png
+
+Other product introduction
 -----------------------------
 New MId-70
 ~~~~~~~~~~~~~~~~~~~~~~

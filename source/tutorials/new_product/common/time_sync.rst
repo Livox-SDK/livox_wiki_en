@@ -17,6 +17,10 @@ PTP v2 and gPTP can be used for time synchronization between Livox LiDAR and oth
 
 In the case that other sensors are directly synchronized through GPS signals, the synchronization can be completed by directly connecting the hardware to the PPS signal and GPS signal, without additional software deployment;
 
+**NTP:**
+
+When PTP/gPTP and GPS are not available, a pure software NTP synchronization method can be used. This method has relatively low accuracy, but only requires one NTP server.
+
 .. _PTP Time Synchronization:
 
 PTP Time Synchronization
@@ -137,10 +141,10 @@ Appendix: How to configure the PTP master clock
 
 refer to: `The Linux PTP Project <http://linuxptp.sourceforge.net>`__
 
-Download: 
+Download:
 
    This method has been tested and is recommended to use `linuxptp v3.1.1 <https://sourceforge.net/projects/linuxptp/files/v3.1/linuxptp-3.1.1.tgz/download>`__
-   
+
    You can also use git clone (not recommended)
 .. code:: bash
 
@@ -171,7 +175,7 @@ The network card capabilities option includes the following parameters, indicati
 The network card capabilities option includes the following parameters, indicating that the network card supports hardware timestamps:
 
 .. code:: bash
-   
+
    SOF_TIMESTAMPING_RAW_HARDWARE
    SOF_TIMESTAMPING_TX_HARDWARE
    SOF_TIMESTAMPING_RX_HARDWARE
@@ -202,7 +206,7 @@ Run the following command to start the ptp4l master clock function using the gPT
 
 .. code:: bash
 
-   sudo ptp4l -i eth0 -H -ml 6 -f automotive-master.cfg  
+   sudo ptp4l -i eth0 -H -ml 6 -f automotive-master.cfg
 
 If ``Sync Message`` data appears in the network, it means that the master clock function of the ptp4l program is running normally:
 
@@ -305,3 +309,23 @@ If timestamp_type is 2, it means that the device is performing GPS time synchron
 
 .. note::
    Normally, the GPS module can output PPS signal and time signal normally only after receiving GPS signal. When using, it is necessary to ensure that the GPS signal is stable; currently the time signal only supports the two formats of GPRMC/GNRMC;
+
+
+.. _NTP Time Synchronization:
+
+NTP Time Synchronization
+--------------------------------------------------
+
+Principle of NTP Time Synchronization
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+NTP synchronization only relies on one NTP server. NTP is a general-purpose "good enough" standard, with accuracy at the ms level. It uses UDP port 123 and is suitable for scenarios with relatively low requirements on time synchronization accuracy;
+
+Both NTP and PTP use a client/server (or master/slave) model, and calculate the time offset by exchanging packets with timestamps. However, they handle latency in very different ways:
+
+1. The key assumption of NTP is that the network round-trip delay is symmetric (that is, the send delay T2-T1 is approximately equal to the receive delay T4-T3).
+2. Software processing of NTP packets also introduces uncertain latency.
+3. Although PTP is also a software protocol, it relies on Hardware Timestamping. The NIC and switches stamp timestamps at the moment the packet actually leaves or arrives at the physical interface, rather than at the operating system software layer.
+
+
+.. figure:: ../../../image/timesync/ntp_en.png
