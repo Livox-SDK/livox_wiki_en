@@ -19,10 +19,11 @@
 | 20240102            | v1.4.9      | 1. Add upgrade error related abnormal code description<br/>2. Add environment temp related high abnormal code|
 | 20240117            | v1.4.10     | 1. Update description of GPS sync high-level time of the second pulse|
 | 20240222            | v1.4.11     | 1. Add description related to time synchronization slope<br/>2. Add descriptions related to shock absorption and heat dissipation|
+| 20260921            | v1.4.12     | 1. Add Mid 360L related protocol description                 |
 
 # Overview
 
-This communication protocol is only used for livox Mid360 LiDAR.
+This communication protocol is used for livox Mid 360 series LiDAR, including Mid 360, Mid 360S and Mid 360L.
 
 ## Protocol Types
 
@@ -86,8 +87,8 @@ Mid-360 Communication Port:
 | ---------------- | ------------------------- | ---------- | ---------------------------- | ----------------- | --------------------- |
 | Control Command  | LiDAR<---> Host Computer  | 56100      | Any (56101 recommended)      | Unicast           | UDP                   |
 | Push Command     | LiDAR ---> Host Computer  | 56200      | Configurable (default 56201) | Default Unicast   | UDP                   |
-| Point Cloud Data | LiDAR ---> Host Computer  | 56300      | Configurable (default 56301) | Default Unicast(Support Multicast)   | UDP                   |
-| IMU Data         | LiDAR ---> Host Computer  | 56400      | Configurable (default 56401) | Default Unicast(Support Multicast)   | UDP                   |
+| Point Cloud Data | LiDAR ---> Host Computer  | 56300      | Configurable (default 56301) | Default Unicast(Support Multicast, not supported by 360L)   | UDP                   |
+| IMU Data         | LiDAR ---> Host Computer  | 56400      | Configurable (default 56401) | Default Unicast(Support Multicast, not supported by 360L)   | UDP                   |
 | LOG Data         | LiDAR <---> Host Computer | 56500      | Any (56501 recommended)      | Unicast           | UDP                   |
 
 # Point Cloud & IMU Data Protocol
@@ -148,7 +149,7 @@ There are four data types from 0 to 3, the default data type is 1:
 | 0         | IMU data           |                  |                              |                    |
 | 1         | Point cloud data 1 | Single echo mode | Cartesian coordinates(32bit) | 96                 |
 | 2         | Point cloud data 2 | Single echo mode | Cartesian coordinates(16bit) | 96                 |
-| 3         | Point cloud data 3 | Single echo mode | Spherical coordinates        | 96                 |
+| 3         | Point cloud data 3 | Single echo mode | Spherical coordinates(Not supported by 360L)        | 96                 |
 
 **Data Type 0**
 
@@ -188,7 +189,7 @@ Single echo Cartesian coordinate data format (16bit):
 
 **Data Type 3**
 
-Single return spherical coordinate data format: 
+Single return spherical coordinate data format(Not supported by 360L): 
 | Field        | Offset (bytes) | Data Type | Description (10mm is the resolution in 16bit format) |
 | ------------ | -------------- | --------- | ---------------------------------------- |
 | depth        | 0              | uint32_t  | Depth, Unit: mm                          |
@@ -356,7 +357,7 @@ Specific meanings to `key_value_list` are as follows:
 
 | Number(key) | Name                  | Length | Type        | Content                                                      | Support Parameter Information Configuration Command(cmd_id=0x0100) |
 | ----------- | --------------------- | ------ | ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 0x0000      | pcl_data_type         | 1      | uint8_t     | Type of point cloud data, For details, see[Data Types](2.3 Data Types) <br/>0x01: Cartesian coordinate(32bits)<br/>0x02: Cartesian coordinate(16bits)<br/>0x03: Spherical coordinate | Yes                                                          |
+| 0x0000      | pcl_data_type         | 1      | uint8_t     | Type of point cloud data, For details, see[Data Types](2.3 Data Types) <br/>0x01: Cartesian coordinate(32bits)<br/>0x02: Cartesian coordinate(16bits)<br/>0x03: Spherical coordinate(Not supported by 360L) | Yes                                                          |
 | 0x0001      | pattern_mode          | 1      | uint8_t     | Pattern mode <br/>0x00: Non-repetitive scan<br/>0x01: Repetitive scan(Not Support Now)<br/>0x02: Low frame rate Repetitive scan(Not Support Now)<br/>Note:  Repetitive scan and Low frame rate Repetitive scan are not supported now, it is invalid after setting, please pay attention continuous firmware version update; | Yes                                                          |
 | 0x0004      | lidar_ipcfg           | 12     | uint8_t[12] | LiDAR IP address configuration<br />LiDAR IP address: AA.BB.CC.DD<br/>    data[0]: AA<br/>    data[1]: BB<br/>    data[2]: CC<br/>    data[3]: DD<br/>IPV4 subnet mask<br/>    data[4-7]<br/>IPV4 gateway<br/>    data[8-11] | Yes                                                          |
 | 0x0005      | state_info_host_ipcfg | 8      | uint8_t[8]  | IP address configuration for pushing LiDAR status information<br />data[0-3]: Destination address: AA.BB.CC.DD<br/>data[4-5]: Destination port<br/>data[6-7]: Source port<br/> | Yes                                                          |
@@ -370,8 +371,9 @@ Specific meanings to `key_value_list` are as follows:
 | 0x0019      | func_io_cfg           | 4      | uint8_t[4]  | Function IO configuration. Bytes 0-3 represent functions of IN0, NI1, OUT0, and OUT1 pins respectively, corresponding Mid-360 M12 pin numbers are 8, 10, 12, and 11.<br />IN0: Default value is 0, which means it is used to connect to PPS input, other values are invalid<br />IN1: Default value is 0, which means it is used to connect to GPS input, other values are invalid<br />OUT0: Default value is 0, which means no output (external pull-up resistor), a value of 1 means following the IN0 signal, a value of 2 means the safety zone function outputs 0, and other values are invalid.<br />OUT1: Default value is 0, which means no output (external pull-up resistor), a value of 1 means following the IN1 signal, a value of 2 means the safety zone function outputs 1, and other values are invalid | Yes                                                          |
 | 0x001A      | work_tgt_mode         | 1      | uint8_t     | LiDAR target working mode, For details, see[1.2 LiDAR Working Status](#1.2-LiDAR-Working-Status) | Yes                                                          |
 | 0x001C      | imu_data_en           | 1      | uint8_t     | 0x00: Disable IMU data push <br/>0x01: Enable IMU data push  | Yes                                                          |
-| 0x0021      | speed_mode            | 1      | uint8_t     | 0: Motor normal mode<br/>1: Motor low-speed mode<br/>The default value is 0             | Yes                                                          |
+| 0x0021      | speed_mode            | 1      | uint8_t     | 0: Motor normal mode<br/>1: Motor low-speed mode(360S)<br/>2: Motor high-speed mode(360L)             | Yes                                                          |
 | 0x0026      | time_filter           | 1      | uint8_t     | 0: The timestamp is normally synchronized; if the time rolls back, it will cause point cloud interruption<br/>1: GPS time synchronization enhances abnormal time filtering, and time rollback does not cause point cloud interruptions<br/>The default value is 0 | Yes        |
+| 0x0029      | pc_freq_mod(360L)     | 1      | uint8_t     | Point frequency mode:<br/>0: 80k<br/>1: 50k<br/>2: 100k             | Yes                                                          |
 | 0x002B      | imu_sensor_cfg        | 3      | uint8_t[3]  | IMU frequency and range configuration.<br/>data[0] output_rate 0:200Hz, 1:500Hz, 2:100Hz, 3:50Hz.<br/>data[1] accel_range 0:±4g, 1:±8g, 2:±16g, 3:±32g.<br/>data[2] gyro_range 0:±2000, 1:±1000, 2:±500, 3:±250, 4:±125, 5:±62.5, 6:±31.25, 7:±15.625 dps. | Yes |
 | 0x8000      | sn                    | 16     | uint8_t[16] | String type(Use '\0' padding for less than 16 bits)<br/>LiDAR SN(Use '\0' padding for less than 16 bits) | No                                                           |
 | 0x8001      | product_info          | 64     | char[64]    | String type(Use '\0' padding for less than 32 bits)<br/>LiDAR type + LiDAR production date<br/>Example: "Mid-360 2021/12/01" | No                                                           |

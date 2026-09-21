@@ -32,6 +32,7 @@ Notice:
 * The time limit for GPS time synchronization is from 1/1/2000 to 31/12/2037
 * PTP time synchronization does not support IEEE1588v2.1
 * Not recommended for use in scenarios where IEEE1588v2.0 and gPTP coexist；
+* Mid-360L supports GPS and PTP time synchronization, but does not support gPTP time synchronization；
 
 HMS Diagnostic Code Introduction
 ------------------------------------

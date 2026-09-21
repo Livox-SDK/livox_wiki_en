@@ -22,6 +22,13 @@ Mid-360 is the latest generation of Livox LiDAR for low speed robotics. This new
 
 .. image:: ../image/mid360.jpg
 
+Mid-360L
+~~~~~~~~~~~~~~~~~~~~~~
+Livox launches Mid-360L, a brand-new cost-effective 3D LiDAR. It combines a 360°×44° ultra-large FOV, a point frequency of 100,000 points/s, an ultra-small blind zone of 0.1m, and a body weighing only 245g for easy embedding. It features powerful core capabilities such as active resistance to multi-LiDAR interference and strong light, while offering higher cost-effectiveness. It can be widely used in various scenarios such as lawn mowers, AGV/AMR, cleaning robots, and handheld mapping, providing an ideal economical solution for the large-scale deployment and commercial application of robots. For more information:
+`Mid-360L <https://www.livoxtech.com/mid-360>`_
+
+.. image:: ../image/mid360L.png
+
 Avia2
 ~~~~~~~~~~~~~~~~~~~~~~
 Avia 2,Livox's new ultra-long range LiDAR. Powered by a 1535nm laser,it reaches maximum cutoff range of 1000m and supports switching between large and small FOVs.With amicro laser spot, as well as the built-in rain and fog noise removal algorithm, Avia2 can stably capture high-resolution 3D point clouds in complex conditions, revealing rich details. For more information:

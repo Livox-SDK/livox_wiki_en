@@ -60,7 +60,9 @@ abnormal ID         abnormal level     abnormal description                     
 0x0201              warning            Scan module is heating                                                        Please wait for the scan module heating
 0x0210-0x0219       error              Scan module is abnormal, the system is trying to recover                      Please wait, if it lasts too long, please try restarting the device to restore
 0x0210-0x0219       fatal              Scan module is abnormal                                                       Please try to restart the device to restore
-0x0401              warning            Communication link was linked down, now it is recovered                       Please check the communication link
+0x021C              warning            Scan module code disk is dirty, abnormal rotation speed(360L)                 Please try to restart the device to restore, return to factory for inspection if not recovered
+0x0304              warning            TIA DC abnormal, ranging point cloud abnormal                                 Please try to restart the device to restore
+0x0401              warning            Communication link was linked down, now it is recovered(360S)                 Please check the communication link
 0x0402              warning            PTP time synchronization stop or time gap is too big                          Please check the PTP time source
 0x0403              warning            The version of PTP is 1588-v2.1, device don't support this version            Please replace 1588-v2.1 version with 1588.2.0 version
 0x0404              warning            PPS time synchronization abnormal                                             Please check the PPS and GPS signal
